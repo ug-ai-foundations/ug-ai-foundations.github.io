@@ -1,0 +1,534 @@
+---
+layout: ../../layouts/Main.astro
+title: PJ 1 - Búsqueda
+---
+
+![Pacman Search](/projs/01/maze.png)
+
+En este proyecto, su agente Pacman encontrará caminos a través de un laberinto, tanto para llegar a una ubicación particular como para recolectar alimentos de manera eficiente. Construirán algoritmos de búsqueda generales y los aplicarán a escenarios de Pacman.
+
+## Preparación
+
+Por favor lean las siguientes instrucciones cuidadosamente antes de seguir con el proyecto.
+
+Visiten este [link](#). Aquí encontrarán todos los archivos necesarios para completar este proyecto.
+
+En esta página, encontrarán un botón que dice "**_Accept this assignment_**":
+
+![Accept this assignment](/projs/01/github-01.png)
+
+Al presionar este botón, se empezará a crear automáticamente un repositorio en Github
+
+![Repo created](/projs/01/github-02.png)
+
+Esperen unos segundos para darle refrescar a la página y veran algo como lo siguiente:
+
+![Repo created](/projs/01/github-03.png)
+
+Vean que el repositorio ya ha sido creado y tiene la siguiente forma:
+
+```bash
+https://www.github.com/ug-ai-foundations/2025-pj-01-search-<USUARIO>
+```
+
+Noten que el "dueño" de este repositorio es un usuario llamado `ug-ai-foundations`, y el usuario de ustedes es únicamente el sufijo del nombre del repositorio. De esta forma, nos encargamos de tener acceso siempre a su código.
+
+Abran una terminal en el directorio que prefieran, y ejecuten el siguiente comando:
+
+```bash
+git clone https://www.github.com/ug-ai-foundations/2025-pj-01-search-<USUARIO>
+```
+
+> Recuerden reemplazar `<USUARIO>` con el nombre de usuario que les aparece en el link de GitHub.
+
+Esto descargará en el directorio que escogieron todos los archivos base para este proyecto.
+
+**Únicamente** en este proyecto las instrucciones de preparación estarán así de detalladas, para los siguientes proyectos tienen que seguir los mismos pasos utilizando el link que estará en las instrucciones.
+
+### Instalación de material
+
+Por favor para tener completo el material para el proyecto por favor visitar el link de [instalación de material](/tutorial/maquina).
+
+## Contenido del proyecto
+
+El código de este proyecto consiste en varios archivos de Python, algunos de los cuales deberán leer y entender para completar la tarea, y algunos de los cuales pueden ignorar.
+
+### Archivos que van a editar
+
+| Archivo           | Descripción                                                 |
+| ----------------- | ----------------------------------------------------------- |
+| `search.py`       | Donde se implementarán los algoritmos de búsqueda.          |
+| `searchAgents.py` | Donde se implementarán los agentes de búsqueda para Pacman. |
+
+### Archivos que quisas necesiten leer
+
+| Archivo     | Descripción                                                                                                              |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------ |
+| `pacman.py` | El archivo principal que ejecuta juegos de Pacman. Este archivo también describe la interfaz de los agentes de búsqueda. |
+| `game.py`   | El módulo de juego que define varios elementos del juego utilizados en Pacman.                                           |
+| `util.py`   | Estructuras de datos útiles para implementar algoritmos de búsqueda.                                                     |
+
+### Archivos que pueden ignorar
+
+| Archivo                | Descripción                                                                           |
+| ---------------------- | ------------------------------------------------------------------------------------- |
+| `graphicsDisplay.py`   | Gráficos para mostrar el juego de Pacman.                                             |
+| `graphicsUtils.py`     | Soporte para gráficos.                                                                |
+| `textDisplay.py`       | Gráficos para mostrar el juego de Pacman en texto.                                    |
+| `ghostAgents.py`       | Agentes de fantasmas para el juego de Pacman.                                         |
+| `keyboardAgents.py`    | Agentes de teclado para el juego de Pacman.                                           |
+| `layout.py`            | Código para leer archivos de diseño de laberinto y visualizarlos en formato de texto. |
+| `autograder.py`        | Herramienta para ayudar a calificar el proyecto.                                      |
+| `testParser.py`        | Herramienta para ayudar a escribir pruebas.                                           |
+| `testClasses.py`       | Clases de prueba para el autograder.                                                  |
+| `test_cases/`          | Directorio con archivos de prueba.                                                    |
+| `searchTestClasses.py` | Clases de prueba para los algoritmos de búsqueda.                                     |
+
+## Bienvenido a Pacman
+
+Después de clonar el código y cambiar al directorio, debería poder jugar un juego de Pacman escribiendo en la terminal:
+
+```bash
+python pacman.py
+```
+
+Pacman vive en un mundo azul brillante de corredores retorcidos y deliciosas golosinas redondas. Navegar por este mundo de manera eficiente será el primer paso de Pacman para dominar este mundo.
+
+El agente más simple en `searchAgents.py` se llama `GoWestAgent`, que siempre va al `Oeste` (un agente reactivo trivial). Este agente ocasionalmente puede ganar:
+
+```bash
+python pacman.py --layout testMaze --pacman GoWestAgent
+```
+
+Pero, las cosas se ponen feas para este agente cuando se requiere girar:
+
+```bash
+python pacman.py --layout tinyMaze --pacman GoWestAgent
+```
+
+Si Pacman se queda atascado, pueden salir del juego escribiendo `CTR` + `c` en su terminal.
+
+Pronto, su agente resolverá no solo `tinyMaze`, sino cualquier laberinto que deseen.
+
+Noten que `pacman.py` soporta una serie de opciones que pueden ser expresadas de manera larga (e.g., `--layout`) o de manera corta (e.g., `-l`). Pueden ver la lista de todas las opciones y sus valores por defecto a través de:
+
+```bash
+python pacman.py -h
+```
+
+Además, todos los comandos que aparecen en este proyecto también aparecen en `commands.txt`, para copiar y pegar fácilmente. En UNIX/Mac OS X, incluso pueden ejecutar todos estos comandos en orden con `bash commands.txt`.
+
+## Anotaciones de Python
+
+Puede que no hayan visto esta sintaxis antes:
+
+```python
+def my_function(a: int, b: Tuple[int, int], c: List[List], d: Any, e: float=1.0):
+```
+
+Esto está anotando el tipo de los argumentos que Python debería esperar para esta función. En el ejemplo a continuación, `a` debería ser un `int` - entero, `b` debería ser una `tuple` de 2 ints, `c` debería ser una `List` de `Lists` de cualquier cosa - por lo tanto, una matriz 2D de cualquier cosa, `d` es esencialmente un parámetro no anotado y puede ser cualquier cosa, y `e` debería ser un `float`. `e` también se establece en `1.0` si no se pasa nada para él, es decir:
+
+```python
+my_function(1, (2, 3), [['a', 'b'], [None, my_class], [[]]], ('h', 1))
+```
+
+La llamada anterior se ajusta a las anotaciones de tipo, y no pasa nada para `e`. Las anotaciones de tipo están destinadas a ser una adición a los strings de documentación para ayudar a saber con qué están trabajando las funciones. Python en sí mismo no hace cumplir estas anotaciones. Al escribir sus propias funciones, depende de ustedes si desean anotar sus tipos; pueden ser útiles para mantenerse organizado o no.
+
+## Parte 1 (3pts): Depth First Search
+
+En `searchAgents.py`, encontrarán un `SearchAgent` completamente implementado, que planifica un camino a través del mundo de Pacman y luego ejecuta ese camino paso a paso. Los algoritmos de búsqueda para formular un plan no están implementados - ese es su trabajo.
+
+Primero, prueben que el `SearchAgent` está funcionando correctamente ejecutando:
+
+```bash
+python pacman.py -l tinyMaze -p SearchAgent -a fn=tinyMazeSearch
+```
+
+El comando anterior le dice al `SearchAgent` que use `tinyMazeSearch` como su algoritmo de búsqueda, que está implementado en `search.py`. Pacman debería navegar con éxito por el laberinto.
+
+Ahora es el momento de escribir funciones de búsqueda genéricas para ayudar a Pacman a planificar rutas! El pseudocódigo de los algoritmos de búsqueda que escribirán se puede encontrar en las diapositivas de la clase. Recuerden que un nodo de búsqueda debe contener no solo un estado sino también la información necesaria para reconstruir el camino (plan) que llega a ese estado.
+
+**Nota importante**: Todas sus funciones de búsqueda deben devolver una lista de acciones que llevarán al agente desde el inicio hasta el objetivo. Todas estas acciones deben ser movimientos legales (direcciones válidas, sin moverse a través de paredes).
+
+**Nota importante**: ¡Asegúrense de usar las estructuras de datos `Stack`, `Queue` y `PriorityQueue` proporcionadas en `util.py`! Estas implementaciones de estructuras de datos tienen propiedades particulares que son necesarias para la compatibilidad con el autograder.
+
+> Cada algoritmo es muy similar. Los algoritmos para DFS, BFS, UCS y A\* difieren solo en los detalles de cómo se gestiona el `fringe`. Por lo tanto, concéntrense en hacer que DFS sea correcto y el resto debería ser relativamente sencillo. De hecho, una posible implementación requiere solo un método de búsqueda genérico que se configure con una estrategia de encolamiento específica del algoritmo. (Su implementación no necesita ser de esta forma para recibir la máxima puntuación).
+
+Implementar el algoritmo de depth-first search (DFS) en la función `depthFirstSearch` en `search.py`. Para hacer que su algoritmo este completo, escriban la versión de búsqueda de grafos de DFS, que evita expandir cualquier estado ya visitado.
+
+Su código debería encontrar rápidamente una solución para:
+
+```bash
+python pacman.py -l tinyMaze -p SearchAgent
+python pacman.py -l mediumMaze -p SearchAgent
+python pacman.py -l bigMaze -z .5 -p SearchAgent
+```
+
+El tablero de Pacman mostrará una superposición de los estados explorados y el orden en que fueron explorados (rojo más brillante significa exploración anterior). ¿Es el orden de exploración lo que esperaban? ¿Pacman realmente va a todas las casillas exploradas en su camino hacia el objetivo?
+
+> Si usan un `Stack` como su estructura de datos, la solución encontrada por su algoritmo de DFS para `mediumMaze` debería tener una longitud de `130` (siempre que hagan `push` los sucesores al `fringe` en el orden proporcionado por `getSuccessors`; podrían obtener `246` si hacen `push` en el orden inverso). ¿Es esta una solución de menor costo? Si no, piensen en lo que está haciendo mal la búsqueda depth-first search.
+
+Por favor, ejecuten el siguiente comando para ver si su implementación pasa todas las pruebas del autograder.
+
+```bash
+python autograder.py -q q1
+```
+
+Les debería aparecer algo como lo siguiente:
+
+```bash
+### Question q1: 3/3 ###
+
+
+Finished at 14:53:56
+
+Provisional grades
+==================
+Question q1: 3/3
+------------------
+Total: 3/3
+```
+
+## Parte 2: Breadth First Search
+
+Implementar el algoritmo de búsqueda breadth-first search (BFS) en la función `breadthFirstSearch` en `search.py`. Nuevamente, escriban un algoritmo de búsqueda de grafos que evite expandir cualquier estado ya visitado. Prueben su código de la misma manera que lo hicieron para la búsqueda depth-first search.
+
+```bash
+python pacman.py -l mediumMaze -p SearchAgent -a fn=bfs
+python pacman.py -l bigMaze -p SearchAgent -a fn=bfs -z .5
+```
+
+¿Encuentran BFS una solución de menor costo? Si no, revisen su implementación.
+
+> Si Pacman se mueve demasiado lento para ustedes, prueben la opción `--frameTime 0`.
+
+**Nota**: Si han escrito su código de búsqueda de manera genérica, su código debería funcionar igual de bien para el problema de búsqueda del 8-puzzle sin ningún cambio.
+
+```bash
+python eightpuzzle.py
+```
+
+Por favor, ejecuten el siguiente comando para ver si su implementación pasa todas las pruebas del autograder.
+
+```bash
+python autograder.py -q q2
+```
+
+Les debería aparecer algo como lo siguiente:
+
+```bash
+### Question q2: 3/3 ###
+
+
+Finished at 14:53:44
+
+Provisional grades
+==================
+Question q2: 3/3
+------------------
+Total: 3/3
+```
+
+## Parte 3: Uniform Cost Search
+
+Mientras que BFS encontrará un camino de menor cantidad de acciones al objetivo, podríamos querer encontrar caminos que sean "mejores" en otros sentidos. Consideren `mediumDottedMaze` y `mediumScaryMaze`.
+
+Al cambiar la función de costo, podemos alentar a Pacman a encontrar caminos diferentes. Por ejemplo, podemos penalizar más por pasos peligrosos en áreas llenas de fantasmas o menos por pasos en áreas ricas en alimentos, y un agente inteligente de Pacman debería ajustar su comportamiento en respuesta.
+
+Implementar el algoritmo de búsqueda de grafo de costo uniforme en la función `uniformCostSearch` en `search.py`. Les recomendamos que revisen `util.py` para algunas estructuras de datos que pueden ser útiles en su implementación. Ahora deberían observar un comportamiento exitoso en los tres siguientes diseños, donde los agentes a continuación son todos agentes UCS que difieren solo en la función de costo que utilizan (los agentes y las funciones de costo están escritos para ustedes):
+
+```bash
+python pacman.py -l mediumMaze -p SearchAgent -a fn=ucs
+python pacman.py -l mediumDottedMaze -p StayEastSearchAgent
+python pacman.py -l mediumScaryMaze -p StayWestSearchAgent
+```
+
+**Nota**: Deberían obtener costos de camino muy bajos y muy altos para `StayEastSearchAgent` y `StayWestSearchAgent` respectivamente, debido a sus funciones de costo exponenciales (ver `searchAgents.py` para más detalles).
+
+Por favor, ejecuten el siguiente comando para ver si su implementación pasa todas las pruebas del autograder.
+
+```bash
+python autograder.py -q q3
+```
+
+Les debería aparecer algo como lo siguiente:
+
+```bash
+### Question q3: 3/3 ###
+
+
+Finished at 14:57:00
+
+Provisional grades
+==================
+Question q3: 3/3
+------------------
+Total: 3/3
+```
+
+## Parte 4: A\*
+
+Implementar la búsqueda A* en la función vacía `aStarSearch` en `search.py`. A* toma una función heurística como argumento. Las heurísticas toman dos argumentos: un estado en el problema de búsqueda (el argumento principal) y el problema en sí (para información de referencia). La función heurística `nullHeuristic` en `search.py` es un ejemplo trivial.
+
+Ustedes pueden probar su implementación de A\* en el problema original de encontrar un camino a través de un laberinto a una posición fija usando la heurística de distancia de Manhattan (implementada ya como `manhattanHeuristic` en `searchAgents.py`).
+
+> Adicionalmente a llevar un registro de los estados visitados, también pueden llevar un registro del mejor costo de camino a ese estado hasta ahora. Algunos nodos pueden necesitar ser expandidos más de una vez para encontrar el camino óptimo.
+
+```bash
+python pacman.py -l bigMaze -z .5 -p SearchAgent -a fn=astar,heuristic=manhattanHeuristic
+```
+
+Deberían ver que A\* encuentra la solución óptima ligeramente más rápido que la búsqueda de costo uniforme (alrededor de 549 vs. 620 nodos de búsqueda expandidos en nuestra implementación, pero los empates en la prioridad pueden hacer que sus números difieran ligeramente). ¿Qué sucede en `openMaze` para las diversas estrategias de búsqueda?
+
+Por favor, ejecuten el siguiente comando para ver si su implementación pasa todas las pruebas del autograder.
+
+```bash
+python autograder.py -q q4
+```
+
+Les debería aparecer algo como lo siguiente:
+
+```bash
+### Question q4: 3/3 ###
+
+
+Finished at 15:03:26
+
+Provisional grades
+==================
+Question q4: 3/3
+------------------
+Total: 3/3
+```
+
+## Parte 5: Encontrar todas las esquinas
+
+El verdadero poder de A\* solo será evidente con un problema de búsqueda más desafiante. Ahora es el momento de formular un nuevo problema y diseñar una heurística para él.
+
+En laberintos de esquinas, hay cuatro puntos, uno en cada esquina. Nuestro nuevo problema de búsqueda es encontrar el camino más corto a través del laberinto que toque las cuatro esquinas (ya sea que el laberinto realmente tenga comida allí o no). ¡Tengan en cuenta que para algunos laberintos como `tinyCorners`, el camino más corto no siempre va primero a la comida más cercana! _Pista: el camino más corto a través de `tinyCorners` toma 28 pasos._
+
+**Nota**: Asegúrense de completar la Parte 2 antes de trabajar en la Parte 5, ya que la Parte 5 se basa en su respuesta para la Parte 2.
+
+Implement the CornersProblem search problem in searchAgents.py. You will need to choose a state representation that encodes all the information necessary to detect whether all four corners have been reached. Now, your search agent should solve:
+
+Implementar el `CornersProblem` en `searchAgents.py`. Necesitarán elegir una representación de estado que codifique toda la información necesaria para detectar si se han alcanzado las cuatro esquinas. Ahora, su agente de búsqueda debería resolver:
+
+```bash
+python pacman.py -l tinyCorners -p SearchAgent -a fn=bfs,prob=CornersProblem
+python pacman.py -l mediumCorners -p SearchAgent -a fn=bfs,prob=CornersProblem
+```
+
+Para recibir la máxima puntuación, necesitan definir una representación de estado abstracta que no codifique información irrelevante (como la posición de los fantasmas, dónde está la comida extra, etc.). En particular, no usen un `GameState` de Pacman como un estado de búsqueda. Su código será muy, muy lento si lo hacen (y también incorrecto).
+
+Una instancia de la clase `CornersProblem` representa un problema de búsqueda completo, no un estado particular. Los estados particulares son devueltos por las funciones que escriben, y sus funciones devuelven una estructura de datos de su elección (por ejemplo, tupla, conjunto, etc.) que representa un estado.
+
+Además, mientras un programa se está ejecutando, recuerden que muchos estados existen simultáneamente, todos en la cola del algoritmo de búsqueda, y deben ser independientes entre sí. En otras palabras, no deberían tener solo un estado para todo el objeto `CornersProblem`; su clase debería ser capaz de generar muchos estados diferentes para proporcionar al algoritmo de búsqueda.
+
+> Las únicas partes del estado del juego a las que necesitan hacer referencia en su implementación son la posición inicial de Pacman y la ubicación de las cuatro esquinas.
+
+> Cuando programen `getSuccessors`, asegúrense de agregar hijos a su lista de sucesores con un costo de 1.
+
+Nuestra implementación de `breadthFirstSearch` expande justo menos de 2000 nodos de búsqueda en `mediumCorners`. Sin embargo, las heurísticas (usadas con la búsqueda A\*) pueden reducir la cantidad de búsqueda requerida.
+
+Por favor, ejecuten el siguiente comando para ver si su implementación pasa todas las pruebas del autograder.
+
+```bash
+python autograder.py -q q5
+```
+
+Deberían ver algo como lo siguiente:
+
+```bash
+### Question q5: 3/3 ###
+
+
+Finished at 15:09:59
+
+Provisional grades
+==================
+Question q2: 3/3
+Question q5: 3/3
+------------------
+Total: 6/6
+```
+
+## Parte 6: Encontrar todas las esquinas con heurística
+
+**Nota**: Asegúrense de completar la Parte 4 antes de trabajar en la Parte 6, ya que la Parte 6 se basa en su respuesta para la Parte 4.
+
+Implementar una heurística no trivial para el `CornersProblem` en `cornersHeuristic`.
+
+```bash
+python pacman.py -l mediumCorners -p AStarCornersAgent -z 0.5
+```
+
+**Nota**: `AStarCornersAgent` es un atajo para
+
+```bash
+-p SearchAgent -a fn=aStarSearch,prob=CornersProblem,heuristic=cornersHeuristic
+```
+
+**Admisibilidad**: Recuerden, las heurísticas son solo funciones que toman estados de búsqueda y devuelven números que estiman el costo al objetivo más cercano. Las heurísticas más efectivas devolverán valores más cercanos a los costos reales del objetivo. Para ser admisible, los valores de la heurística deben ser límites inferiores en el costo real del camino más corto al objetivo más cercano (y no negativos).
+
+**Heurísticas no triviales**: Las heurísticas triviales son aquellas que devuelven cero en todas partes (UCS) y la heurística que calcula el costo real de completar el problema. La primera no les ahorrará tiempo, mientras que la última hará que el autograder se agote. Quieren una heurística que reduzca el tiempo total de cálculo, aunque para esta tarea el autograder solo verificará el conteo de nodos (además de hacer cumplir un límite de tiempo razonable).
+
+**Calificación**: Su heurística debe ser una heurística no trivial no negativa para recibir puntos. Asegúrense de que su heurística devuelva 0 en cada estado objetivo y nunca devuelva un valor negativo. Dependiendo de cuántos nodos expanda su heurística, se les calificará:
+
+| Número de nodos expandidos | Puntos |
+| -------------------------- | ------ |
+| mas de 2000                | 3      |
+| como máximo 2000           | 2      |
+| como máximo 1600           | 1      |
+| como máximo 1200           | 0      |
+
+Por favor, ejecuten el siguiente comando para ver si su implementación pasa todas las pruebas del autograder.
+
+```bash
+python autograder.py -q q6
+```
+
+Deberían ver algo como lo siguiente:
+
+```bash
+### Question q6: 3/3 ###
+
+
+Finished at 15:14:34
+
+Provisional grades
+==================
+Question q4: 3/3
+Question q6: 3/3
+------------------
+Total: 6/6
+```
+
+## Parte 7: Comerse todos los puntos de comida
+
+Now we’ll solve a hard search problem: eating all the Pacman food in as few steps as possible. For this, we’ll need a new search problem definition which formalizes the food-clearing problem: FoodSearchProblem in searchAgents.py (implemented for you). A solution is defined to be a path that collects all of the food in the Pacman world. For the present project, solutions do not take into account any ghosts or power pellets; solutions only depend on the placement of walls, regular food and Pacman. (Of course ghosts can ruin the execution of a solution! We’ll get to that in the next project.) If you have written your general search methods correctly, A\* with a null heuristic (equivalent to uniform-cost search) should quickly find an optimal solution to testSearch with no code change on your part (total cost of 7).
+
+Ahora resolveremos un problema de búsqueda difícil: comer toda la comida de Pacman en la menor cantidad de pasos posible. Para esto, necesitaremos una nueva definición de problema de búsqueda que formalice el problema de comerse toda la comida: `FoodSearchProblem` en `searchAgents.py` (implementado para ustedes). Una solución se define como un camino que recolecta toda la comida en el mundo de Pacman. Para el presente proyecto, las soluciones no tienen en cuenta fantasmas o píldoras de poder; las soluciones solo dependen de la ubicación de las paredes, la comida regular y Pacman. (¡Por supuesto, los fantasmas pueden arruinar la ejecución de una solución! Llegaremos a eso en el próximo proyecto). Si han escrito sus métodos de búsqueda generales correctamente, A\* con una heurística nula (equivalente a la búsqueda de costo uniforme) debería encontrar rápidamente una solución óptima para `testSearch` sin ningún cambio de código de su parte (costo total de 7).
+
+```bash
+python pacman.py -l testSearch -p AStarFoodSearchAgent
+```
+
+**Nota**: `AStarFoodSearchAgent` es un atajo para
+
+```bash
+-p SearchAgent -a fn=astar,prob=FoodSearchProblem,heuristic=foodHeuristic
+```
+
+Deberían encontrar que UCS comienza a ralentizarse incluso para el aparentemente simple `tinySearch`. Como referencia, nuestra implementación tarda 2.5 segundos en encontrar un camino de longitud 27 después de expandir 5057 nodos de búsqueda.
+
+**Nota**: Asegúrense de completar la Parte 4 antes de trabajar en la Parte 7, ya que la Parte 7 se basa en su respuesta para la Parte 4.
+
+Completar `foodHeuristic` en `searchAgents.py` con una heurística para el `FoodSearchProblem`. Prueben su agente en el tablero `trickySearch`:
+
+```bash
+python pacman.py -l trickySearch -p AStarFoodSearchAgent
+```
+
+Nuestro agente UCS encuentra la solución óptima en aproximadamente 13 segundos, explorando más de 16,000 nodos.
+
+Any non-trivial non-negative heuristic will receive 1 point. Make sure that your heuristic returns 0 at every goal state and never returns a negative value. Depending on how few nodes your heuristic expands, you’ll get additional points:
+
+Cualquier heurística no trivial no negativa recibirá 1 punto. Asegúrense de que su heurística devuelva 0 en cada estado objetivo y nunca devuelva un valor negativo. Dependiendo de cuántos nodos expanda su heurística, recibirán puntos adicionales:
+
+| Número de nodos expandidos | Puntos                 |
+| -------------------------- | ---------------------- |
+| mas de 15000               | 1/4                    |
+| como máximo 15000          | 2/4                    |
+| como máximo 12000          | 3/4                    |
+| como máximo 9000           | 4/4 (todos los puntos) |
+| como máximo 7000           | 5/4 (puntos extra)     |
+
+Por favor, ejecuten el siguiente comando para ver si su implementación pasa todas las pruebas del autograder.
+
+```bash
+python autograder.py -q q7
+```
+
+Deberían ver algo como lo siguiente si obtienen los puntos extra:
+
+```bash
+### Question q7: 5/4 ###
+
+
+Finished at 15:20:09
+
+Provisional grades
+==================
+Question q4: 3/3
+Question q7: 5/4
+------------------
+Total: 8/7
+```
+
+## Parte 8: Búsqueda subóptima
+
+A veces, incluso con A\* y una buena heurística, encontrar el camino óptimo a través de todos los puntos es difícil. En estos casos, aún nos gustaría encontrar un camino razonablemente bueno, rápidamente. En esta sección, escribirán un agente que siempre come ávidamente el punto más cercano. `ClosestDotSearchAgent` está implementado para ustedes en `searchAgents.py`, pero le falta una función clave que encuentra un camino al punto más cercano.
+
+Implementar la función `findPathToClosestDot` en `searchAgents.py`. Nuestro agente resuelve este laberinto (¡subóptimamente!) en menos de un segundo con un costo de camino de 350:
+
+```bash
+python pacman.py -l bigSearch -p ClosestDotSearchAgent -z .5
+```
+
+> La manera más rápida de completar `findPathToClosestDot` es completar `AnyFoodSearchProblem`, que no tiene su prueba de objetivo. Luego, resuelvan ese problema con una función de búsqueda apropiada. ¡La solución debería ser muy corta!
+
+Su `ClosestDotSearchAgent` no siempre encontrará el camino más corto posible a través del laberinto. Asegúrense de entender por qué y traten de encontrar un pequeño ejemplo donde ir repetidamente al punto más cercano no resulte en encontrar el camino más corto para comer todos los puntos.
+
+Por favor, ejecuten el siguiente comando para ver si su implementación pasa todas las pruebas del autograder.
+
+```bash
+python autograder.py -q q8
+```
+
+Deberían ver algo como lo siguiente:
+
+```bash
+### Question q8: 3/3 ###
+
+
+Finished at 15:22:23
+
+Provisional grades
+==================
+Question q8: 3/3
+------------------
+Total: 3/3
+```
+
+## Calificación
+
+La calificación de este proyecto será de 0 a 100 puntos, donde 100 puntos es la calificación máxima que equivale a los 25 puntos obtenidos en el autograder. La calificación se basará en la cantidad de ejercicios completados. Si tienen alguna duda sobre la calificación, por favor envíen un mensaje por los canales correspondientes.
+
+Para conocer su calificación, por favor ejecuten el siguiente comando:
+
+```bash
+python autograder.py
+```
+
+Deberían ver algo como lo siguiente:
+
+```bash
+Provisional grades
+==================
+Question q1: 3/3
+Question q2: 3/3
+Question q3: 3/3
+Question q4: 3/3
+Question q5: 3/3
+Question q6: 3/3
+Question q7: 5/4
+Question q8: 3/3
+------------------
+Total: 26/25
+```
+
+## Entrega
+
+Por favor subir el link de su repositorio al **GES**. Siempre es necesario que suban su repositorio al GES, incluso si no completaron todos los ejercicios, de lo contrario la nota será de 0 puntos automáticamente.
+
+Tienen más de una semana para completar el proyecto, es decir, el link para subir al GES estará habilitado hasta el **28 de Febrero del 2025 a las 11:55 PM**.
