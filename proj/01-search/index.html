@@ -1,0 +1,467 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><meta name="generator" content="Astro v5.1.8"><meta name="description"><title>PJ 1 - Búsqueda</title><link rel="icon" href="/favicon.ico" sizes="any"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"><!-- Facebook Meta Tags --><meta property="og:type" content="website"><meta property="og:title" content="PJ 1 - Búsqueda"><meta property="og:description"><!-- Twitter Meta Tags --><meta name="twitter:card" content="summary_large_image"><meta property="twitter:domain" content="github.io"><meta name="twitter:title" content="PJ 1 - Búsqueda"><meta name="twitter:description"><script>
+      const storageKey = "ai-ug-theme";
+      const el = document.documentElement;
+      const systemThemes = ["light", "dark"];
+      const defaultTheme = "system";
+      const media = "(prefers-color-scheme: dark)";
+
+      function setColorScheme(theme) {
+        if (systemThemes.includes(theme)) {
+          el.style.colorScheme = theme;
+        }
+      }
+
+      function updateDOM(theme) {
+        el.classList.remove(...systemThemes);
+        el.classList.add(theme);
+        setColorScheme(theme);
+      }
+
+      function getSystemTheme() {
+        return window.matchMedia(media).matches ? "dark" : "light";
+      }
+
+      try {
+        const themeName = localStorage.getItem(storageKey) || defaultTheme;
+        const isSystem = themeName === "system";
+        const theme = isSystem ? getSystemTheme() : themeName;
+        updateDOM(theme);
+      } catch {
+        // ignore (localStorage might be disabled)
+      }
+    </script><link rel="stylesheet" href="/assets/calendar.BM8My1Ki.css">
+<link rel="stylesheet" href="/assets/index.BIyfTlV9.css"></head> <body> <header class="bg-background/90 fixed z-50 w-full border-b backdrop-blur backdrop-filter"> <div class="mx-auto flex h-16 w-full max-w-screen-2xl items-center justify-between gap-2 px-4 md:px-8 lg:px-16"> <div class="items-center space-x-2.5 hidden lg:flex"> <a href="/" aria-label="IA" class="tracking- flex items-center gap-2 font-medium no-underline"> <span class="bg-tertiary text-tertiary-foreground inline-flex items-center justify-center rounded-full p-1"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bot h-5 w-5"><path d="M12 8V4H8"></path><rect width="16" height="12" x="4" y="8" rx="2"></rect><path d="M2 14h2"></path><path d="M20 14h2"></path><path d="M15 13v2"></path><path d="M9 13v2"></path></svg> </span> <span class="hidden font-semibold tracking-tighter lg:inline">
+IA
+</span> </a> <span class="items-center rounded-md border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80 hidden lg:inline-flex">2025</span> </div> <nav class="divide-border flex flex-1 grow items-center justify-end divide-x"> <div class="flex flex-1 grow items-center pr-2 md:max-w-64 lg:space-x-4 lg:pr-8"> <button id="command-k" class="inline-flex items-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border border-input shadow-sm hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2 bg-muted/30 group relative w-full justify-between pl-8 pr-2 lg:cursor-text"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search absolute left-2 h-4 w-4"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg> <span>Buscar</span> <span class="items-center rounded-md border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80 group-hover:border-tertiary group-hover:bg-background hidden lg:inline-flex">
+⌘K
+</span> </button> </div> <div class="flex items-center gap-2 lg:pl-8 pl-2"> <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();;(()=>{var A=Object.defineProperty;var g=(i,o,a)=>o in i?A(i,o,{enumerable:!0,configurable:!0,writable:!0,value:a}):i[o]=a;var d=(i,o,a)=>g(i,typeof o!="symbol"?o+"":o,a);{let i={0:t=>m(t),1:t=>a(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(a(t)),5:t=>new Set(a(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>1/0*t},o=t=>{let[l,e]=t;return l in i?i[l](e):void 0},a=t=>t.map(o),m=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([l,e])=>[l,o(e)]));class y extends HTMLElement{constructor(){super(...arguments);d(this,"Component");d(this,"hydrator");d(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let c=this.querySelectorAll("astro-slot"),n={},h=this.querySelectorAll("template[data-astro-template]");for(let r of h){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("data-astro-template")||"default"]=r.innerHTML,r.remove())}for(let r of c){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("name")||"default"]=r.innerHTML)}let p;try{p=this.hasAttribute("props")?m(JSON.parse(this.getAttribute("props"))):{}}catch(r){let s=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(s+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${s}`,this.getAttribute("props"),r),r}let u;await this.hydrator(this)(this.Component,p,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});d(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),c.disconnect(),this.childrenConnectedCallback()},c=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});c.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}async start(){let e=JSON.parse(this.getAttribute("opts")),c=this.getAttribute("client");if(Astro[c]===void 0){window.addEventListener(`astro:${c}`,()=>this.start(),{once:!0});return}try{await Astro[c](async()=>{let n=this.getAttribute("renderer-url"),[h,{default:p}]=await Promise.all([import(this.getAttribute("component-url")),n?import(n):()=>()=>{}]),u=this.getAttribute("component-export")||"default";if(!u.includes("."))this.Component=h[u];else{this.Component=h;for(let f of u.split("."))this.Component=this.Component[f]}return this.hydrator=p,this.hydrate},e,this)}catch(n){console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`,n)}}attributeChangedCallback(){this.hydrate()}}d(y,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",y)}})();</script><astro-island uid="1ASBXX" prefix="r24" component-url="/assets/theme.BP1xcHL3.js" component-export="ThemeToggle" renderer-url="/assets/client.CBw73trT.js" props="{}" ssr client="load" opts="{&quot;name&quot;:&quot;ThemeToggle&quot;,&quot;value&quot;:true}" await-children><div class="bg-background flex items-center justify-center gap-0.5 rounded-full border p-1"><button type="button" aria-pressed="false" data-state="off" aria-label="System Theme" class="text-foreground ring-ring data-[state=on]:border-tertiary data-[state=on]:bg-tertiary data-[state=on]:text-tertiary-foreground inline-flex h-7 w-7 items-center justify-center rounded-full border border-transparent transition-colors focus-visible:outline-none focus-visible:ring-1 data-[state=on]:shadow-lg"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-monitor h-4 w-4"><rect width="20" height="14" x="2" y="3" rx="2"></rect><line x1="8" x2="16" y1="21" y2="21"></line><line x1="12" x2="12" y1="17" y2="21"></line></svg></button><button type="button" aria-pressed="false" data-state="off" aria-label="Dark Theme" class="text-foreground ring-ring data-[state=on]:border-tertiary data-[state=on]:bg-tertiary data-[state=on]:text-tertiary-foreground inline-flex h-7 w-7 items-center justify-center rounded-full border border-transparent transition-colors focus-visible:outline-none focus-visible:ring-1 data-[state=on]:shadow-lg"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-moon h-4 w-4"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg></button><button type="button" aria-pressed="false" data-state="off" aria-label="Light Theme" class="text-foreground ring-ring data-[state=on]:border-tertiary data-[state=on]:bg-tertiary data-[state=on]:text-tertiary-foreground inline-flex h-7 w-7 items-center justify-center rounded-full border border-transparent transition-colors focus-visible:outline-none focus-visible:ring-1 data-[state=on]:shadow-lg"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun h-4 w-4"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg></button></div><!--astro:end--></astro-island>  <a target="_blank" rel="noreferrer" href="https://github.com/ug-ai-foundations"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github h-4 w-4"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg> <span class="sr-only">Github</span> </a>   <a target="_blank" rel="noreferrer" href="https://pia2025.slack.com"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-slack h-4 w-4"><rect width="3" height="8" x="13" y="2" rx="1.5"></rect><path d="M19 8.5V10h1.5A1.5 1.5 0 1 0 19 8.5"></path><rect width="3" height="8" x="8" y="14" rx="1.5"></rect><path d="M5 15.5V14H3.5A1.5 1.5 0 1 0 5 15.5"></path><rect width="8" height="3" x="14" y="13" rx="1.5"></rect><path d="M15.5 19H14v1.5a1.5 1.5 0 1 0 1.5-1.5"></path><rect width="8" height="3" x="2" y="8" rx="1.5"></rect><path d="M8.5 5H10V3.5A1.5 1.5 0 1 0 8.5 5"></path></svg> <span class="sr-only">Slack</span> </a>  </div> </nav> </div> </header> <div class="flex min-h-svh flex-col justify-between"> <main class="w-full pt-16"> <div class="mx-auto flex w-full max-w-screen-2xl px-4 md:px-8 lg:px-16"> <aside class="sticky top-16 z-10 hidden w-80 shrink-0 lg:block lg:h-[calc(100svh-4rem-5rem)]"> <div class="h-full w-full overflow-y-auto py-8"> <div class="flex w-full flex-col items-start gap-2 pr-4"> <astro-island uid="fhctS" prefix="r29" component-url="/assets/AsideLink.Q08yiomP.js" component-export="AsideLink" renderer-url="/assets/client.CBw73trT.js" props="{&quot;exact&quot;:[0,true],&quot;pathname&quot;:[0,&quot;/proj/01-search/&quot;],&quot;href&quot;:[0,&quot;/&quot;]}" ssr client="load" opts="{&quot;name&quot;:&quot;AsideLink&quot;,&quot;value&quot;:true}" await-children><a href="/" data-state="closed" class="rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2 text-muted-foreground flex w-full grow items-center justify-start gap-2"><span class="line-clamp-1"><astro-slot>
+Inicio
+</astro-slot></span></a><!--astro:end--></astro-island> <astro-island uid="13f2v0" prefix="r30" component-url="/assets/AsideLink.Q08yiomP.js" component-export="AsideLink" renderer-url="/assets/client.CBw73trT.js" props="{&quot;exact&quot;:[0,true],&quot;pathname&quot;:[0,&quot;/proj/01-search/&quot;],&quot;href&quot;:[0,&quot;/calendar&quot;]}" ssr client="load" opts="{&quot;name&quot;:&quot;AsideLink&quot;,&quot;value&quot;:true}" await-children><a href="/calendar" data-state="closed" class="rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2 text-muted-foreground flex w-full grow items-center justify-start gap-2"><span class="line-clamp-1"><astro-slot>
+Calendario
+</astro-slot></span></a><!--astro:end--></astro-island>   <span class="flex h-8 grow items-center px-3 text-sm font-medium leading-none">
+Proyectos
+</span> <div class="ml-3 w-full flex flex-col items-start gap-2 border-l pl-3"> <astro-island uid="1l02t8" prefix="r32" component-url="/assets/AsideLink.Q08yiomP.js" component-export="AsideLink" renderer-url="/assets/client.CBw73trT.js" props="{&quot;exact&quot;:[0,true],&quot;pathname&quot;:[0,&quot;/proj/01-search/&quot;],&quot;href&quot;:[0,&quot;/proj/01-search&quot;]}" ssr client="load" opts="{&quot;name&quot;:&quot;AsideLink&quot;,&quot;value&quot;:true}" await-children><a href="/proj/01-search" data-state="closed" class="rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2 text-muted-foreground flex w-full grow items-center justify-start gap-2"><span class="line-clamp-1"><astro-slot>PJ 1 - Búsqueda</astro-slot></span></a><!--astro:end--></astro-island> </div> <span class="flex h-8 grow items-center px-3 text-sm font-medium leading-none">
+Tutoriales
+</span> <div class="ml-3 w-full flex flex-col items-start gap-2 border-l pl-3"> <astro-island uid="ZMJBzT" prefix="r33" component-url="/assets/AsideLink.Q08yiomP.js" component-export="AsideLink" renderer-url="/assets/client.CBw73trT.js" props="{&quot;exact&quot;:[0,true],&quot;pathname&quot;:[0,&quot;/proj/01-search/&quot;],&quot;href&quot;:[0,&quot;/tutorial/git-github&quot;]}" ssr client="load" opts="{&quot;name&quot;:&quot;AsideLink&quot;,&quot;value&quot;:true}" await-children><a href="/tutorial/git-github" data-state="closed" class="rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2 text-muted-foreground flex w-full grow items-center justify-start gap-2"><span class="line-clamp-1"><astro-slot>Git y GitHub</astro-slot></span></a><!--astro:end--></astro-island><astro-island uid="Z1k2Yrb" prefix="r34" component-url="/assets/AsideLink.Q08yiomP.js" component-export="AsideLink" renderer-url="/assets/client.CBw73trT.js" props="{&quot;exact&quot;:[0,true],&quot;pathname&quot;:[0,&quot;/proj/01-search/&quot;],&quot;href&quot;:[0,&quot;/tutorial/maquina&quot;]}" ssr client="load" opts="{&quot;name&quot;:&quot;AsideLink&quot;,&quot;value&quot;:true}" await-children><a href="/tutorial/maquina" data-state="closed" class="rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2 text-muted-foreground flex w-full grow items-center justify-start gap-2"><span class="line-clamp-1"><astro-slot>Instalación de Material</astro-slot></span></a><!--astro:end--></astro-island> </div>   </div> </div> <div class="from-background/0 to-card/100 absolute inset-x-0 top-0 h-8 bg-gradient-to-t"></div> <div class="from-background/0 to-card/100 absolute inset-x-0 bottom-0 h-8 bg-gradient-to-b"></div> <astro-island uid="pfa2j" prefix="r25" component-url="/assets/Search.DBBvYqXV.js" component-export="Search" renderer-url="/assets/client.CBw73trT.js" props="{&quot;pathname&quot;:[0,&quot;/proj/01-search/&quot;],&quot;labs&quot;:[1,[]],&quot;projects&quot;:[1,[[0,{&quot;title&quot;:[0,&quot;PJ 1 - Búsqueda&quot;],&quot;href&quot;:[0,&quot;/proj/01-search&quot;]}]]],&quot;tutorials&quot;:[1,[[0,{&quot;title&quot;:[0,&quot;Git y GitHub&quot;],&quot;href&quot;:[0,&quot;/tutorial/git-github&quot;]}],[0,{&quot;title&quot;:[0,&quot;Instalación de Material&quot;],&quot;href&quot;:[0,&quot;/tutorial/maquina&quot;]}]]],&quot;notes&quot;:[1,[]]}" ssr client="load" opts="{&quot;name&quot;:&quot;Search&quot;,&quot;value&quot;:true}"></astro-island> </aside> <div class="w-full lg:flex lg:w-[calc(100%-20rem)] lg:items-start"> <div class="flex w-full"> <div class="relative w-full pt-8 2xl:w-[calc(100%-20rem)]"> <astro-island uid="2tiDPY" prefix="r23" component-url="/assets/Banner.CSoGvjBL.js" component-export="default" renderer-url="/assets/client.CBw73trT.js" props="{&quot;title&quot;:[0,&quot;PJ 1 - Búsqueda&quot;]}" ssr client="load" opts="{&quot;name&quot;:&quot;Banner&quot;,&quot;value&quot;:true}" await-children><div class="bg-background animate-in fade-in-0 sticky top-16 z-10 ml-16 hidden h-16 w-[calc(100%-6rem)] duration-500"><ul class="flex h-full items-center space-x-2 text-sm"><li class="flex items-center space-x-2"><a href="/docs" class="text-muted-foreground inline whitespace-nowrap">Documentación</a><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right text-muted-foreground h-4 w-4"><path d="m9 18 6-6-6-6"></path></svg></li><li class="text-muted-foreground line-clamp-1 hidden lg:block">PJ 1 - Búsqueda</li></ul></div><!--astro:end--></astro-island> <header class="relative w-full"> <div class="mx-auto w-full max-w-3xl space-y-2 px-4 py-8 md:px-8 lg:max-w-full lg:px-16"> <ul class="-mx-1 flex flex-wrap items-center text-sm"> <li class="mx-1 flex items-center space-x-2"> <span class="text-muted-foreground inline whitespace-nowrap">
+Documentación
+</span> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right text-muted-foreground w-4"><path d="m9 18 6-6-6-6"></path></svg> </li> </ul> <h1 class="text-2xl font-semibold md:text-3xl lg:text-4xl"> PJ 1 - Búsqueda </h1> </div> </header> <div class="docs prose-headings:scroll-mt-32 prose prose-lg prose-inline-code:px-1.5 prose-inline-code:py-0.5 prose-inline-code:rounded-md prose-inline-code:bg-muted prose-slate prose-cyan dark:prose-invert prose-headings:font-semibold prose-a:font-normal prose-code:font-normal prose-code:before:content-none prose-code:after:content-none mx-auto mb-4 w-full min-w-0 max-w-3xl shrink p-4 pb-8 md:mb-8 md:px-8 lg:mx-0 lg:max-w-full lg:pl-16 lg:pr-8"> <p><img src="/projs/01/maze.png" alt="Pacman Search"/></p>
+<p>En este proyecto, su agente Pacman encontrará caminos a través de un laberinto, tanto para llegar a una ubicación particular como para recolectar alimentos de manera eficiente. Construirán algoritmos de búsqueda generales y los aplicarán a escenarios de Pacman.</p>
+<h2 id="preparación">Preparación</h2>
+<p>Por favor lean las siguientes instrucciones cuidadosamente antes de seguir con el proyecto.</p>
+<p>Visiten este <a href="#">link</a>. Aquí encontrarán todos los archivos necesarios para completar este proyecto.</p>
+<p>En esta página, encontrarán un botón que dice “<strong><em>Accept this assignment</em></strong>”:</p>
+<p><img src="/projs/01/github-01.png" alt="Accept this assignment"/></p>
+<p>Al presionar este botón, se empezará a crear automáticamente un repositorio en Github</p>
+<p><img src="/projs/01/github-02.png" alt="Repo created"/></p>
+<p>Esperen unos segundos para darle refrescar a la página y veran algo como lo siguiente:</p>
+<p><img src="/projs/01/github-03.png" alt="Repo created"/></p>
+<p>Vean que el repositorio ya ha sido creado y tiene la siguiente forma:</p>
+<pre class="astro-code dark-plus" style="background-color:#1E1E1E;color:#D4D4D4;overflow-x:auto" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#DCDCAA">https://www.github.com/ug-ai-foundations/2025-pj-01-search-</span><span style="color:#D4D4D4">&lt;USUARIO&gt;</span></span></code></pre>
+<p>Noten que el “dueño” de este repositorio es un usuario llamado <code>ug-ai-foundations</code>, y el usuario de ustedes es únicamente el sufijo del nombre del repositorio. De esta forma, nos encargamos de tener acceso siempre a su código.</p>
+<p>Abran una terminal en el directorio que prefieran, y ejecuten el siguiente comando:</p>
+<pre class="astro-code dark-plus" style="background-color:#1E1E1E;color:#D4D4D4;overflow-x:auto" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#DCDCAA">git</span><span style="color:#CE9178"> clone</span><span style="color:#CE9178"> https://www.github.com/ug-ai-foundations/2025-pj-01-search-</span><span style="color:#D4D4D4">&lt;</span><span style="color:#CE9178">USUARI</span><span style="color:#D4D4D4">O&gt;</span></span></code></pre>
+<blockquote>
+<p>Recuerden reemplazar <code>&lt;USUARIO&gt;</code> con el nombre de usuario que les aparece en el link de GitHub.</p>
+</blockquote>
+<p>Esto descargará en el directorio que escogieron todos los archivos base para este proyecto.</p>
+<p><strong>Únicamente</strong> en este proyecto las instrucciones de preparación estarán así de detalladas, para los siguientes proyectos tienen que seguir los mismos pasos utilizando el link que estará en las instrucciones.</p>
+<h3 id="instalación-de-material">Instalación de material</h3>
+<p>Por favor para tener completo el material para el proyecto por favor visitar el link de <a href="/tutorial/maquina">instalación de material</a>.</p>
+<h2 id="contenido-del-proyecto">Contenido del proyecto</h2>
+<p>El código de este proyecto consiste en varios archivos de Python, algunos de los cuales deberán leer y entender para completar la tarea, y algunos de los cuales pueden ignorar.</p>
+<h3 id="archivos-que-van-a-editar">Archivos que van a editar</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Archivo</th><th>Descripción</th></tr></thead><tbody><tr><td><code>search.py</code></td><td>Donde se implementarán los algoritmos de búsqueda.</td></tr><tr><td><code>searchAgents.py</code></td><td>Donde se implementarán los agentes de búsqueda para Pacman.</td></tr></tbody></table>
+<h3 id="archivos-que-quisas-necesiten-leer">Archivos que quisas necesiten leer</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Archivo</th><th>Descripción</th></tr></thead><tbody><tr><td><code>pacman.py</code></td><td>El archivo principal que ejecuta juegos de Pacman. Este archivo también describe la interfaz de los agentes de búsqueda.</td></tr><tr><td><code>game.py</code></td><td>El módulo de juego que define varios elementos del juego utilizados en Pacman.</td></tr><tr><td><code>util.py</code></td><td>Estructuras de datos útiles para implementar algoritmos de búsqueda.</td></tr></tbody></table>
+<h3 id="archivos-que-pueden-ignorar">Archivos que pueden ignorar</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Archivo</th><th>Descripción</th></tr></thead><tbody><tr><td><code>graphicsDisplay.py</code></td><td>Gráficos para mostrar el juego de Pacman.</td></tr><tr><td><code>graphicsUtils.py</code></td><td>Soporte para gráficos.</td></tr><tr><td><code>textDisplay.py</code></td><td>Gráficos para mostrar el juego de Pacman en texto.</td></tr><tr><td><code>ghostAgents.py</code></td><td>Agentes de fantasmas para el juego de Pacman.</td></tr><tr><td><code>keyboardAgents.py</code></td><td>Agentes de teclado para el juego de Pacman.</td></tr><tr><td><code>layout.py</code></td><td>Código para leer archivos de diseño de laberinto y visualizarlos en formato de texto.</td></tr><tr><td><code>autograder.py</code></td><td>Herramienta para ayudar a calificar el proyecto.</td></tr><tr><td><code>testParser.py</code></td><td>Herramienta para ayudar a escribir pruebas.</td></tr><tr><td><code>testClasses.py</code></td><td>Clases de prueba para el autograder.</td></tr><tr><td><code>test_cases/</code></td><td>Directorio con archivos de prueba.</td></tr><tr><td><code>searchTestClasses.py</code></td><td>Clases de prueba para los algoritmos de búsqueda.</td></tr></tbody></table>
+<h2 id="bienvenido-a-pacman">Bienvenido a Pacman</h2>
+<p>Después de clonar el código y cambiar al directorio, debería poder jugar un juego de Pacman escribiendo en la terminal:</p>
+<pre class="astro-code dark-plus" style="background-color:#1E1E1E;color:#D4D4D4;overflow-x:auto" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#DCDCAA">python</span><span style="color:#CE9178"> pacman.py</span></span></code></pre>
+<p>Pacman vive en un mundo azul brillante de corredores retorcidos y deliciosas golosinas redondas. Navegar por este mundo de manera eficiente será el primer paso de Pacman para dominar este mundo.</p>
+<p>El agente más simple en <code>searchAgents.py</code> se llama <code>GoWestAgent</code>, que siempre va al <code>Oeste</code> (un agente reactivo trivial). Este agente ocasionalmente puede ganar:</p>
+<pre class="astro-code dark-plus" style="background-color:#1E1E1E;color:#D4D4D4;overflow-x:auto" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#DCDCAA">python</span><span style="color:#CE9178"> pacman.py</span><span style="color:#569CD6"> --layout</span><span style="color:#CE9178"> testMaze</span><span style="color:#569CD6"> --pacman</span><span style="color:#CE9178"> GoWestAgent</span></span></code></pre>
+<p>Pero, las cosas se ponen feas para este agente cuando se requiere girar:</p>
+<pre class="astro-code dark-plus" style="background-color:#1E1E1E;color:#D4D4D4;overflow-x:auto" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#DCDCAA">python</span><span style="color:#CE9178"> pacman.py</span><span style="color:#569CD6"> --layout</span><span style="color:#CE9178"> tinyMaze</span><span style="color:#569CD6"> --pacman</span><span style="color:#CE9178"> GoWestAgent</span></span></code></pre>
+<p>Si Pacman se queda atascado, pueden salir del juego escribiendo <code>CTR</code> + <code>c</code> en su terminal.</p>
+<p>Pronto, su agente resolverá no solo <code>tinyMaze</code>, sino cualquier laberinto que deseen.</p>
+<p>Noten que <code>pacman.py</code> soporta una serie de opciones que pueden ser expresadas de manera larga (e.g., <code>--layout</code>) o de manera corta (e.g., <code>-l</code>). Pueden ver la lista de todas las opciones y sus valores por defecto a través de:</p>
+<pre class="astro-code dark-plus" style="background-color:#1E1E1E;color:#D4D4D4;overflow-x:auto" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#DCDCAA">python</span><span style="color:#CE9178"> pacman.py</span><span style="color:#569CD6"> -h</span></span></code></pre>
+<p>Además, todos los comandos que aparecen en este proyecto también aparecen en <code>commands.txt</code>, para copiar y pegar fácilmente. En UNIX/Mac OS X, incluso pueden ejecutar todos estos comandos en orden con <code>bash commands.txt</code>.</p>
+<h2 id="anotaciones-de-python">Anotaciones de Python</h2>
+<p>Puede que no hayan visto esta sintaxis antes:</p>
+<pre class="astro-code dark-plus" style="background-color:#1E1E1E;color:#D4D4D4;overflow-x:auto" tabindex="0" data-language="python"><code><span class="line"><span style="color:#569CD6">def</span><span style="color:#DCDCAA"> my_function</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">a</span><span style="color:#D4D4D4">: </span><span style="color:#4EC9B0">int</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">b</span><span style="color:#D4D4D4">: Tuple[</span><span style="color:#4EC9B0">int</span><span style="color:#D4D4D4">, </span><span style="color:#4EC9B0">int</span><span style="color:#D4D4D4">], </span><span style="color:#9CDCFE">c</span><span style="color:#D4D4D4">: List[List], </span><span style="color:#9CDCFE">d</span><span style="color:#D4D4D4">: Any, </span><span style="color:#9CDCFE">e</span><span style="color:#D4D4D4">: </span><span style="color:#4EC9B0">float</span><span style="color:#D4D4D4">=</span><span style="color:#B5CEA8">1.0</span><span style="color:#D4D4D4">):</span></span></code></pre>
+<p>Esto está anotando el tipo de los argumentos que Python debería esperar para esta función. En el ejemplo a continuación, <code>a</code> debería ser un <code>int</code> - entero, <code>b</code> debería ser una <code>tuple</code> de 2 ints, <code>c</code> debería ser una <code>List</code> de <code>Lists</code> de cualquier cosa - por lo tanto, una matriz 2D de cualquier cosa, <code>d</code> es esencialmente un parámetro no anotado y puede ser cualquier cosa, y <code>e</code> debería ser un <code>float</code>. <code>e</code> también se establece en <code>1.0</code> si no se pasa nada para él, es decir:</p>
+<pre class="astro-code dark-plus" style="background-color:#1E1E1E;color:#D4D4D4;overflow-x:auto" tabindex="0" data-language="python"><code><span class="line"><span style="color:#D4D4D4">my_function(</span><span style="color:#B5CEA8">1</span><span style="color:#D4D4D4">, (</span><span style="color:#B5CEA8">2</span><span style="color:#D4D4D4">, </span><span style="color:#B5CEA8">3</span><span style="color:#D4D4D4">), [[</span><span style="color:#CE9178">&#39;a&#39;</span><span style="color:#D4D4D4">, </span><span style="color:#CE9178">&#39;b&#39;</span><span style="color:#D4D4D4">], [</span><span style="color:#569CD6">None</span><span style="color:#D4D4D4">, my_class], [[]]], (</span><span style="color:#CE9178">&#39;h&#39;</span><span style="color:#D4D4D4">, </span><span style="color:#B5CEA8">1</span><span style="color:#D4D4D4">))</span></span></code></pre>
+<p>La llamada anterior se ajusta a las anotaciones de tipo, y no pasa nada para <code>e</code>. Las anotaciones de tipo están destinadas a ser una adición a los strings de documentación para ayudar a saber con qué están trabajando las funciones. Python en sí mismo no hace cumplir estas anotaciones. Al escribir sus propias funciones, depende de ustedes si desean anotar sus tipos; pueden ser útiles para mantenerse organizado o no.</p>
+<h2 id="parte-1-3pts-depth-first-search">Parte 1 (3pts): Depth First Search</h2>
+<p>En <code>searchAgents.py</code>, encontrarán un <code>SearchAgent</code> completamente implementado, que planifica un camino a través del mundo de Pacman y luego ejecuta ese camino paso a paso. Los algoritmos de búsqueda para formular un plan no están implementados - ese es su trabajo.</p>
+<p>Primero, prueben que el <code>SearchAgent</code> está funcionando correctamente ejecutando:</p>
+<pre class="astro-code dark-plus" style="background-color:#1E1E1E;color:#D4D4D4;overflow-x:auto" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#DCDCAA">python</span><span style="color:#CE9178"> pacman.py</span><span style="color:#569CD6"> -l</span><span style="color:#CE9178"> tinyMaze</span><span style="color:#569CD6"> -p</span><span style="color:#CE9178"> SearchAgent</span><span style="color:#569CD6"> -a</span><span style="color:#CE9178"> fn=tinyMazeSearch</span></span></code></pre>
+<p>El comando anterior le dice al <code>SearchAgent</code> que use <code>tinyMazeSearch</code> como su algoritmo de búsqueda, que está implementado en <code>search.py</code>. Pacman debería navegar con éxito por el laberinto.</p>
+<p>Ahora es el momento de escribir funciones de búsqueda genéricas para ayudar a Pacman a planificar rutas! El pseudocódigo de los algoritmos de búsqueda que escribirán se puede encontrar en las diapositivas de la clase. Recuerden que un nodo de búsqueda debe contener no solo un estado sino también la información necesaria para reconstruir el camino (plan) que llega a ese estado.</p>
+<p><strong>Nota importante</strong>: Todas sus funciones de búsqueda deben devolver una lista de acciones que llevarán al agente desde el inicio hasta el objetivo. Todas estas acciones deben ser movimientos legales (direcciones válidas, sin moverse a través de paredes).</p>
+<p><strong>Nota importante</strong>: ¡Asegúrense de usar las estructuras de datos <code>Stack</code>, <code>Queue</code> y <code>PriorityQueue</code> proporcionadas en <code>util.py</code>! Estas implementaciones de estructuras de datos tienen propiedades particulares que son necesarias para la compatibilidad con el autograder.</p>
+<blockquote>
+<p>Cada algoritmo es muy similar. Los algoritmos para DFS, BFS, UCS y A* difieren solo en los detalles de cómo se gestiona el <code>fringe</code>. Por lo tanto, concéntrense en hacer que DFS sea correcto y el resto debería ser relativamente sencillo. De hecho, una posible implementación requiere solo un método de búsqueda genérico que se configure con una estrategia de encolamiento específica del algoritmo. (Su implementación no necesita ser de esta forma para recibir la máxima puntuación).</p>
+</blockquote>
+<p>Implementar el algoritmo de depth-first search (DFS) en la función <code>depthFirstSearch</code> en <code>search.py</code>. Para hacer que su algoritmo este completo, escriban la versión de búsqueda de grafos de DFS, que evita expandir cualquier estado ya visitado.</p>
+<p>Su código debería encontrar rápidamente una solución para:</p>
+<pre class="astro-code dark-plus" style="background-color:#1E1E1E;color:#D4D4D4;overflow-x:auto" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#DCDCAA">python</span><span style="color:#CE9178"> pacman.py</span><span style="color:#569CD6"> -l</span><span style="color:#CE9178"> tinyMaze</span><span style="color:#569CD6"> -p</span><span style="color:#CE9178"> SearchAgent</span></span>
+<span class="line"><span style="color:#DCDCAA">python</span><span style="color:#CE9178"> pacman.py</span><span style="color:#569CD6"> -l</span><span style="color:#CE9178"> mediumMaze</span><span style="color:#569CD6"> -p</span><span style="color:#CE9178"> SearchAgent</span></span>
+<span class="line"><span style="color:#DCDCAA">python</span><span style="color:#CE9178"> pacman.py</span><span style="color:#569CD6"> -l</span><span style="color:#CE9178"> bigMaze</span><span style="color:#569CD6"> -z</span><span style="color:#CE9178"> .5</span><span style="color:#569CD6"> -p</span><span style="color:#CE9178"> SearchAgent</span></span></code></pre>
+<p>El tablero de Pacman mostrará una superposición de los estados explorados y el orden en que fueron explorados (rojo más brillante significa exploración anterior). ¿Es el orden de exploración lo que esperaban? ¿Pacman realmente va a todas las casillas exploradas en su camino hacia el objetivo?</p>
+<blockquote>
+<p>Si usan un <code>Stack</code> como su estructura de datos, la solución encontrada por su algoritmo de DFS para <code>mediumMaze</code> debería tener una longitud de <code>130</code> (siempre que hagan <code>push</code> los sucesores al <code>fringe</code> en el orden proporcionado por <code>getSuccessors</code>; podrían obtener <code>246</code> si hacen <code>push</code> en el orden inverso). ¿Es esta una solución de menor costo? Si no, piensen en lo que está haciendo mal la búsqueda depth-first search.</p>
+</blockquote>
+<p>Por favor, ejecuten el siguiente comando para ver si su implementación pasa todas las pruebas del autograder.</p>
+<pre class="astro-code dark-plus" style="background-color:#1E1E1E;color:#D4D4D4;overflow-x:auto" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#DCDCAA">python</span><span style="color:#CE9178"> autograder.py</span><span style="color:#569CD6"> -q</span><span style="color:#CE9178"> q1</span></span></code></pre>
+<p>Les debería aparecer algo como lo siguiente:</p>
+<pre class="astro-code dark-plus" style="background-color:#1E1E1E;color:#D4D4D4;overflow-x:auto" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#6A9955">### Question q1: 3/3 ###</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color:#DCDCAA">Finished</span><span style="color:#CE9178"> at</span><span style="color:#CE9178"> 14:53:56</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#DCDCAA">Provisional</span><span style="color:#CE9178"> grades</span></span>
+<span class="line"><span style="color:#CE9178">==================</span></span>
+<span class="line"><span style="color:#DCDCAA">Question</span><span style="color:#CE9178"> q1:</span><span style="color:#CE9178"> 3/3</span></span>
+<span class="line"><span style="color:#DCDCAA">------------------</span></span>
+<span class="line"><span style="color:#DCDCAA">Total:</span><span style="color:#CE9178"> 3/3</span></span></code></pre>
+<h2 id="parte-2-breadth-first-search">Parte 2: Breadth First Search</h2>
+<p>Implementar el algoritmo de búsqueda breadth-first search (BFS) en la función <code>breadthFirstSearch</code> en <code>search.py</code>. Nuevamente, escriban un algoritmo de búsqueda de grafos que evite expandir cualquier estado ya visitado. Prueben su código de la misma manera que lo hicieron para la búsqueda depth-first search.</p>
+<pre class="astro-code dark-plus" style="background-color:#1E1E1E;color:#D4D4D4;overflow-x:auto" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#DCDCAA">python</span><span style="color:#CE9178"> pacman.py</span><span style="color:#569CD6"> -l</span><span style="color:#CE9178"> mediumMaze</span><span style="color:#569CD6"> -p</span><span style="color:#CE9178"> SearchAgent</span><span style="color:#569CD6"> -a</span><span style="color:#CE9178"> fn=bfs</span></span>
+<span class="line"><span style="color:#DCDCAA">python</span><span style="color:#CE9178"> pacman.py</span><span style="color:#569CD6"> -l</span><span style="color:#CE9178"> bigMaze</span><span style="color:#569CD6"> -p</span><span style="color:#CE9178"> SearchAgent</span><span style="color:#569CD6"> -a</span><span style="color:#CE9178"> fn=bfs</span><span style="color:#569CD6"> -z</span><span style="color:#CE9178"> .5</span></span></code></pre>
+<p>¿Encuentran BFS una solución de menor costo? Si no, revisen su implementación.</p>
+<blockquote>
+<p>Si Pacman se mueve demasiado lento para ustedes, prueben la opción <code>--frameTime 0</code>.</p>
+</blockquote>
+<p><strong>Nota</strong>: Si han escrito su código de búsqueda de manera genérica, su código debería funcionar igual de bien para el problema de búsqueda del 8-puzzle sin ningún cambio.</p>
+<pre class="astro-code dark-plus" style="background-color:#1E1E1E;color:#D4D4D4;overflow-x:auto" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#DCDCAA">python</span><span style="color:#CE9178"> eightpuzzle.py</span></span></code></pre>
+<p>Por favor, ejecuten el siguiente comando para ver si su implementación pasa todas las pruebas del autograder.</p>
+<pre class="astro-code dark-plus" style="background-color:#1E1E1E;color:#D4D4D4;overflow-x:auto" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#DCDCAA">python</span><span style="color:#CE9178"> autograder.py</span><span style="color:#569CD6"> -q</span><span style="color:#CE9178"> q2</span></span></code></pre>
+<p>Les debería aparecer algo como lo siguiente:</p>
+<pre class="astro-code dark-plus" style="background-color:#1E1E1E;color:#D4D4D4;overflow-x:auto" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#6A9955">### Question q2: 3/3 ###</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color:#DCDCAA">Finished</span><span style="color:#CE9178"> at</span><span style="color:#CE9178"> 14:53:44</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#DCDCAA">Provisional</span><span style="color:#CE9178"> grades</span></span>
+<span class="line"><span style="color:#CE9178">==================</span></span>
+<span class="line"><span style="color:#DCDCAA">Question</span><span style="color:#CE9178"> q2:</span><span style="color:#CE9178"> 3/3</span></span>
+<span class="line"><span style="color:#DCDCAA">------------------</span></span>
+<span class="line"><span style="color:#DCDCAA">Total:</span><span style="color:#CE9178"> 3/3</span></span></code></pre>
+<h2 id="parte-3-uniform-cost-search">Parte 3: Uniform Cost Search</h2>
+<p>Mientras que BFS encontrará un camino de menor cantidad de acciones al objetivo, podríamos querer encontrar caminos que sean “mejores” en otros sentidos. Consideren <code>mediumDottedMaze</code> y <code>mediumScaryMaze</code>.</p>
+<p>Al cambiar la función de costo, podemos alentar a Pacman a encontrar caminos diferentes. Por ejemplo, podemos penalizar más por pasos peligrosos en áreas llenas de fantasmas o menos por pasos en áreas ricas en alimentos, y un agente inteligente de Pacman debería ajustar su comportamiento en respuesta.</p>
+<p>Implementar el algoritmo de búsqueda de grafo de costo uniforme en la función <code>uniformCostSearch</code> en <code>search.py</code>. Les recomendamos que revisen <code>util.py</code> para algunas estructuras de datos que pueden ser útiles en su implementación. Ahora deberían observar un comportamiento exitoso en los tres siguientes diseños, donde los agentes a continuación son todos agentes UCS que difieren solo en la función de costo que utilizan (los agentes y las funciones de costo están escritos para ustedes):</p>
+<pre class="astro-code dark-plus" style="background-color:#1E1E1E;color:#D4D4D4;overflow-x:auto" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#DCDCAA">python</span><span style="color:#CE9178"> pacman.py</span><span style="color:#569CD6"> -l</span><span style="color:#CE9178"> mediumMaze</span><span style="color:#569CD6"> -p</span><span style="color:#CE9178"> SearchAgent</span><span style="color:#569CD6"> -a</span><span style="color:#CE9178"> fn=ucs</span></span>
+<span class="line"><span style="color:#DCDCAA">python</span><span style="color:#CE9178"> pacman.py</span><span style="color:#569CD6"> -l</span><span style="color:#CE9178"> mediumDottedMaze</span><span style="color:#569CD6"> -p</span><span style="color:#CE9178"> StayEastSearchAgent</span></span>
+<span class="line"><span style="color:#DCDCAA">python</span><span style="color:#CE9178"> pacman.py</span><span style="color:#569CD6"> -l</span><span style="color:#CE9178"> mediumScaryMaze</span><span style="color:#569CD6"> -p</span><span style="color:#CE9178"> StayWestSearchAgent</span></span></code></pre>
+<p><strong>Nota</strong>: Deberían obtener costos de camino muy bajos y muy altos para <code>StayEastSearchAgent</code> y <code>StayWestSearchAgent</code> respectivamente, debido a sus funciones de costo exponenciales (ver <code>searchAgents.py</code> para más detalles).</p>
+<p>Por favor, ejecuten el siguiente comando para ver si su implementación pasa todas las pruebas del autograder.</p>
+<pre class="astro-code dark-plus" style="background-color:#1E1E1E;color:#D4D4D4;overflow-x:auto" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#DCDCAA">python</span><span style="color:#CE9178"> autograder.py</span><span style="color:#569CD6"> -q</span><span style="color:#CE9178"> q3</span></span></code></pre>
+<p>Les debería aparecer algo como lo siguiente:</p>
+<pre class="astro-code dark-plus" style="background-color:#1E1E1E;color:#D4D4D4;overflow-x:auto" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#6A9955">### Question q3: 3/3 ###</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color:#DCDCAA">Finished</span><span style="color:#CE9178"> at</span><span style="color:#CE9178"> 14:57:00</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#DCDCAA">Provisional</span><span style="color:#CE9178"> grades</span></span>
+<span class="line"><span style="color:#CE9178">==================</span></span>
+<span class="line"><span style="color:#DCDCAA">Question</span><span style="color:#CE9178"> q3:</span><span style="color:#CE9178"> 3/3</span></span>
+<span class="line"><span style="color:#DCDCAA">------------------</span></span>
+<span class="line"><span style="color:#DCDCAA">Total:</span><span style="color:#CE9178"> 3/3</span></span></code></pre>
+<h2 id="parte-4-a">Parte 4: A*</h2>
+<p>Implementar la búsqueda A* en la función vacía <code>aStarSearch</code> en <code>search.py</code>. A* toma una función heurística como argumento. Las heurísticas toman dos argumentos: un estado en el problema de búsqueda (el argumento principal) y el problema en sí (para información de referencia). La función heurística <code>nullHeuristic</code> en <code>search.py</code> es un ejemplo trivial.</p>
+<p>Ustedes pueden probar su implementación de A* en el problema original de encontrar un camino a través de un laberinto a una posición fija usando la heurística de distancia de Manhattan (implementada ya como <code>manhattanHeuristic</code> en <code>searchAgents.py</code>).</p>
+<blockquote>
+<p>Adicionalmente a llevar un registro de los estados visitados, también pueden llevar un registro del mejor costo de camino a ese estado hasta ahora. Algunos nodos pueden necesitar ser expandidos más de una vez para encontrar el camino óptimo.</p>
+</blockquote>
+<pre class="astro-code dark-plus" style="background-color:#1E1E1E;color:#D4D4D4;overflow-x:auto" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#DCDCAA">python</span><span style="color:#CE9178"> pacman.py</span><span style="color:#569CD6"> -l</span><span style="color:#CE9178"> bigMaze</span><span style="color:#569CD6"> -z</span><span style="color:#CE9178"> .5</span><span style="color:#569CD6"> -p</span><span style="color:#CE9178"> SearchAgent</span><span style="color:#569CD6"> -a</span><span style="color:#CE9178"> fn=astar,heuristic=manhattanHeuristic</span></span></code></pre>
+<p>Deberían ver que A* encuentra la solución óptima ligeramente más rápido que la búsqueda de costo uniforme (alrededor de 549 vs. 620 nodos de búsqueda expandidos en nuestra implementación, pero los empates en la prioridad pueden hacer que sus números difieran ligeramente). ¿Qué sucede en <code>openMaze</code> para las diversas estrategias de búsqueda?</p>
+<p>Por favor, ejecuten el siguiente comando para ver si su implementación pasa todas las pruebas del autograder.</p>
+<pre class="astro-code dark-plus" style="background-color:#1E1E1E;color:#D4D4D4;overflow-x:auto" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#DCDCAA">python</span><span style="color:#CE9178"> autograder.py</span><span style="color:#569CD6"> -q</span><span style="color:#CE9178"> q4</span></span></code></pre>
+<p>Les debería aparecer algo como lo siguiente:</p>
+<pre class="astro-code dark-plus" style="background-color:#1E1E1E;color:#D4D4D4;overflow-x:auto" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#6A9955">### Question q4: 3/3 ###</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color:#DCDCAA">Finished</span><span style="color:#CE9178"> at</span><span style="color:#CE9178"> 15:03:26</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#DCDCAA">Provisional</span><span style="color:#CE9178"> grades</span></span>
+<span class="line"><span style="color:#CE9178">==================</span></span>
+<span class="line"><span style="color:#DCDCAA">Question</span><span style="color:#CE9178"> q4:</span><span style="color:#CE9178"> 3/3</span></span>
+<span class="line"><span style="color:#DCDCAA">------------------</span></span>
+<span class="line"><span style="color:#DCDCAA">Total:</span><span style="color:#CE9178"> 3/3</span></span></code></pre>
+<h2 id="parte-5-encontrar-todas-las-esquinas">Parte 5: Encontrar todas las esquinas</h2>
+<p>El verdadero poder de A* solo será evidente con un problema de búsqueda más desafiante. Ahora es el momento de formular un nuevo problema y diseñar una heurística para él.</p>
+<p>En laberintos de esquinas, hay cuatro puntos, uno en cada esquina. Nuestro nuevo problema de búsqueda es encontrar el camino más corto a través del laberinto que toque las cuatro esquinas (ya sea que el laberinto realmente tenga comida allí o no). ¡Tengan en cuenta que para algunos laberintos como <code>tinyCorners</code>, el camino más corto no siempre va primero a la comida más cercana! <em>Pista: el camino más corto a través de <code>tinyCorners</code> toma 28 pasos.</em></p>
+<p><strong>Nota</strong>: Asegúrense de completar la Parte 2 antes de trabajar en la Parte 5, ya que la Parte 5 se basa en su respuesta para la Parte 2.</p>
+<p>Implement the CornersProblem search problem in searchAgents.py. You will need to choose a state representation that encodes all the information necessary to detect whether all four corners have been reached. Now, your search agent should solve:</p>
+<p>Implementar el <code>CornersProblem</code> en <code>searchAgents.py</code>. Necesitarán elegir una representación de estado que codifique toda la información necesaria para detectar si se han alcanzado las cuatro esquinas. Ahora, su agente de búsqueda debería resolver:</p>
+<pre class="astro-code dark-plus" style="background-color:#1E1E1E;color:#D4D4D4;overflow-x:auto" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#DCDCAA">python</span><span style="color:#CE9178"> pacman.py</span><span style="color:#569CD6"> -l</span><span style="color:#CE9178"> tinyCorners</span><span style="color:#569CD6"> -p</span><span style="color:#CE9178"> SearchAgent</span><span style="color:#569CD6"> -a</span><span style="color:#CE9178"> fn=bfs,prob=CornersProblem</span></span>
+<span class="line"><span style="color:#DCDCAA">python</span><span style="color:#CE9178"> pacman.py</span><span style="color:#569CD6"> -l</span><span style="color:#CE9178"> mediumCorners</span><span style="color:#569CD6"> -p</span><span style="color:#CE9178"> SearchAgent</span><span style="color:#569CD6"> -a</span><span style="color:#CE9178"> fn=bfs,prob=CornersProblem</span></span></code></pre>
+<p>Para recibir la máxima puntuación, necesitan definir una representación de estado abstracta que no codifique información irrelevante (como la posición de los fantasmas, dónde está la comida extra, etc.). En particular, no usen un <code>GameState</code> de Pacman como un estado de búsqueda. Su código será muy, muy lento si lo hacen (y también incorrecto).</p>
+<p>Una instancia de la clase <code>CornersProblem</code> representa un problema de búsqueda completo, no un estado particular. Los estados particulares son devueltos por las funciones que escriben, y sus funciones devuelven una estructura de datos de su elección (por ejemplo, tupla, conjunto, etc.) que representa un estado.</p>
+<p>Además, mientras un programa se está ejecutando, recuerden que muchos estados existen simultáneamente, todos en la cola del algoritmo de búsqueda, y deben ser independientes entre sí. En otras palabras, no deberían tener solo un estado para todo el objeto <code>CornersProblem</code>; su clase debería ser capaz de generar muchos estados diferentes para proporcionar al algoritmo de búsqueda.</p>
+<blockquote>
+<p>Las únicas partes del estado del juego a las que necesitan hacer referencia en su implementación son la posición inicial de Pacman y la ubicación de las cuatro esquinas.</p>
+</blockquote>
+<blockquote>
+<p>Cuando programen <code>getSuccessors</code>, asegúrense de agregar hijos a su lista de sucesores con un costo de 1.</p>
+</blockquote>
+<p>Nuestra implementación de <code>breadthFirstSearch</code> expande justo menos de 2000 nodos de búsqueda en <code>mediumCorners</code>. Sin embargo, las heurísticas (usadas con la búsqueda A*) pueden reducir la cantidad de búsqueda requerida.</p>
+<p>Por favor, ejecuten el siguiente comando para ver si su implementación pasa todas las pruebas del autograder.</p>
+<pre class="astro-code dark-plus" style="background-color:#1E1E1E;color:#D4D4D4;overflow-x:auto" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#DCDCAA">python</span><span style="color:#CE9178"> autograder.py</span><span style="color:#569CD6"> -q</span><span style="color:#CE9178"> q5</span></span></code></pre>
+<p>Deberían ver algo como lo siguiente:</p>
+<pre class="astro-code dark-plus" style="background-color:#1E1E1E;color:#D4D4D4;overflow-x:auto" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#6A9955">### Question q5: 3/3 ###</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color:#DCDCAA">Finished</span><span style="color:#CE9178"> at</span><span style="color:#CE9178"> 15:09:59</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#DCDCAA">Provisional</span><span style="color:#CE9178"> grades</span></span>
+<span class="line"><span style="color:#CE9178">==================</span></span>
+<span class="line"><span style="color:#DCDCAA">Question</span><span style="color:#CE9178"> q2:</span><span style="color:#CE9178"> 3/3</span></span>
+<span class="line"><span style="color:#DCDCAA">Question</span><span style="color:#CE9178"> q5:</span><span style="color:#CE9178"> 3/3</span></span>
+<span class="line"><span style="color:#DCDCAA">------------------</span></span>
+<span class="line"><span style="color:#DCDCAA">Total:</span><span style="color:#CE9178"> 6/6</span></span></code></pre>
+<h2 id="parte-6-encontrar-todas-las-esquinas-con-heurística">Parte 6: Encontrar todas las esquinas con heurística</h2>
+<p><strong>Nota</strong>: Asegúrense de completar la Parte 4 antes de trabajar en la Parte 6, ya que la Parte 6 se basa en su respuesta para la Parte 4.</p>
+<p>Implementar una heurística no trivial para el <code>CornersProblem</code> en <code>cornersHeuristic</code>.</p>
+<pre class="astro-code dark-plus" style="background-color:#1E1E1E;color:#D4D4D4;overflow-x:auto" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#DCDCAA">python</span><span style="color:#CE9178"> pacman.py</span><span style="color:#569CD6"> -l</span><span style="color:#CE9178"> mediumCorners</span><span style="color:#569CD6"> -p</span><span style="color:#CE9178"> AStarCornersAgent</span><span style="color:#569CD6"> -z</span><span style="color:#B5CEA8"> 0.5</span></span></code></pre>
+<p><strong>Nota</strong>: <code>AStarCornersAgent</code> es un atajo para</p>
+<pre class="astro-code dark-plus" style="background-color:#1E1E1E;color:#D4D4D4;overflow-x:auto" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#DCDCAA">-p</span><span style="color:#CE9178"> SearchAgent</span><span style="color:#569CD6"> -a</span><span style="color:#CE9178"> fn=aStarSearch,prob=CornersProblem,heuristic=cornersHeuristic</span></span></code></pre>
+<p><strong>Admisibilidad</strong>: Recuerden, las heurísticas son solo funciones que toman estados de búsqueda y devuelven números que estiman el costo al objetivo más cercano. Las heurísticas más efectivas devolverán valores más cercanos a los costos reales del objetivo. Para ser admisible, los valores de la heurística deben ser límites inferiores en el costo real del camino más corto al objetivo más cercano (y no negativos).</p>
+<p><strong>Heurísticas no triviales</strong>: Las heurísticas triviales son aquellas que devuelven cero en todas partes (UCS) y la heurística que calcula el costo real de completar el problema. La primera no les ahorrará tiempo, mientras que la última hará que el autograder se agote. Quieren una heurística que reduzca el tiempo total de cálculo, aunque para esta tarea el autograder solo verificará el conteo de nodos (además de hacer cumplir un límite de tiempo razonable).</p>
+<p><strong>Calificación</strong>: Su heurística debe ser una heurística no trivial no negativa para recibir puntos. Asegúrense de que su heurística devuelva 0 en cada estado objetivo y nunca devuelva un valor negativo. Dependiendo de cuántos nodos expanda su heurística, se les calificará:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Número de nodos expandidos</th><th>Puntos</th></tr></thead><tbody><tr><td>mas de 2000</td><td>3</td></tr><tr><td>como máximo 2000</td><td>2</td></tr><tr><td>como máximo 1600</td><td>1</td></tr><tr><td>como máximo 1200</td><td>0</td></tr></tbody></table>
+<p>Por favor, ejecuten el siguiente comando para ver si su implementación pasa todas las pruebas del autograder.</p>
+<pre class="astro-code dark-plus" style="background-color:#1E1E1E;color:#D4D4D4;overflow-x:auto" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#DCDCAA">python</span><span style="color:#CE9178"> autograder.py</span><span style="color:#569CD6"> -q</span><span style="color:#CE9178"> q6</span></span></code></pre>
+<p>Deberían ver algo como lo siguiente:</p>
+<pre class="astro-code dark-plus" style="background-color:#1E1E1E;color:#D4D4D4;overflow-x:auto" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#6A9955">### Question q6: 3/3 ###</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color:#DCDCAA">Finished</span><span style="color:#CE9178"> at</span><span style="color:#CE9178"> 15:14:34</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#DCDCAA">Provisional</span><span style="color:#CE9178"> grades</span></span>
+<span class="line"><span style="color:#CE9178">==================</span></span>
+<span class="line"><span style="color:#DCDCAA">Question</span><span style="color:#CE9178"> q4:</span><span style="color:#CE9178"> 3/3</span></span>
+<span class="line"><span style="color:#DCDCAA">Question</span><span style="color:#CE9178"> q6:</span><span style="color:#CE9178"> 3/3</span></span>
+<span class="line"><span style="color:#DCDCAA">------------------</span></span>
+<span class="line"><span style="color:#DCDCAA">Total:</span><span style="color:#CE9178"> 6/6</span></span></code></pre>
+<h2 id="parte-7-comerse-todos-los-puntos-de-comida">Parte 7: Comerse todos los puntos de comida</h2>
+<p>Now we’ll solve a hard search problem: eating all the Pacman food in as few steps as possible. For this, we’ll need a new search problem definition which formalizes the food-clearing problem: FoodSearchProblem in searchAgents.py (implemented for you). A solution is defined to be a path that collects all of the food in the Pacman world. For the present project, solutions do not take into account any ghosts or power pellets; solutions only depend on the placement of walls, regular food and Pacman. (Of course ghosts can ruin the execution of a solution! We’ll get to that in the next project.) If you have written your general search methods correctly, A* with a null heuristic (equivalent to uniform-cost search) should quickly find an optimal solution to testSearch with no code change on your part (total cost of 7).</p>
+<p>Ahora resolveremos un problema de búsqueda difícil: comer toda la comida de Pacman en la menor cantidad de pasos posible. Para esto, necesitaremos una nueva definición de problema de búsqueda que formalice el problema de comerse toda la comida: <code>FoodSearchProblem</code> en <code>searchAgents.py</code> (implementado para ustedes). Una solución se define como un camino que recolecta toda la comida en el mundo de Pacman. Para el presente proyecto, las soluciones no tienen en cuenta fantasmas o píldoras de poder; las soluciones solo dependen de la ubicación de las paredes, la comida regular y Pacman. (¡Por supuesto, los fantasmas pueden arruinar la ejecución de una solución! Llegaremos a eso en el próximo proyecto). Si han escrito sus métodos de búsqueda generales correctamente, A* con una heurística nula (equivalente a la búsqueda de costo uniforme) debería encontrar rápidamente una solución óptima para <code>testSearch</code> sin ningún cambio de código de su parte (costo total de 7).</p>
+<pre class="astro-code dark-plus" style="background-color:#1E1E1E;color:#D4D4D4;overflow-x:auto" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#DCDCAA">python</span><span style="color:#CE9178"> pacman.py</span><span style="color:#569CD6"> -l</span><span style="color:#CE9178"> testSearch</span><span style="color:#569CD6"> -p</span><span style="color:#CE9178"> AStarFoodSearchAgent</span></span></code></pre>
+<p><strong>Nota</strong>: <code>AStarFoodSearchAgent</code> es un atajo para</p>
+<pre class="astro-code dark-plus" style="background-color:#1E1E1E;color:#D4D4D4;overflow-x:auto" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#DCDCAA">-p</span><span style="color:#CE9178"> SearchAgent</span><span style="color:#569CD6"> -a</span><span style="color:#CE9178"> fn=astar,prob=FoodSearchProblem,heuristic=foodHeuristic</span></span></code></pre>
+<p>Deberían encontrar que UCS comienza a ralentizarse incluso para el aparentemente simple <code>tinySearch</code>. Como referencia, nuestra implementación tarda 2.5 segundos en encontrar un camino de longitud 27 después de expandir 5057 nodos de búsqueda.</p>
+<p><strong>Nota</strong>: Asegúrense de completar la Parte 4 antes de trabajar en la Parte 7, ya que la Parte 7 se basa en su respuesta para la Parte 4.</p>
+<p>Completar <code>foodHeuristic</code> en <code>searchAgents.py</code> con una heurística para el <code>FoodSearchProblem</code>. Prueben su agente en el tablero <code>trickySearch</code>:</p>
+<pre class="astro-code dark-plus" style="background-color:#1E1E1E;color:#D4D4D4;overflow-x:auto" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#DCDCAA">python</span><span style="color:#CE9178"> pacman.py</span><span style="color:#569CD6"> -l</span><span style="color:#CE9178"> trickySearch</span><span style="color:#569CD6"> -p</span><span style="color:#CE9178"> AStarFoodSearchAgent</span></span></code></pre>
+<p>Nuestro agente UCS encuentra la solución óptima en aproximadamente 13 segundos, explorando más de 16,000 nodos.</p>
+<p>Any non-trivial non-negative heuristic will receive 1 point. Make sure that your heuristic returns 0 at every goal state and never returns a negative value. Depending on how few nodes your heuristic expands, you’ll get additional points:</p>
+<p>Cualquier heurística no trivial no negativa recibirá 1 punto. Asegúrense de que su heurística devuelva 0 en cada estado objetivo y nunca devuelva un valor negativo. Dependiendo de cuántos nodos expanda su heurística, recibirán puntos adicionales:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Número de nodos expandidos</th><th>Puntos</th></tr></thead><tbody><tr><td>mas de 15000</td><td>1/4</td></tr><tr><td>como máximo 15000</td><td>2/4</td></tr><tr><td>como máximo 12000</td><td>3/4</td></tr><tr><td>como máximo 9000</td><td>4/4 (todos los puntos)</td></tr><tr><td>como máximo 7000</td><td>5/4 (puntos extra)</td></tr></tbody></table>
+<p>Por favor, ejecuten el siguiente comando para ver si su implementación pasa todas las pruebas del autograder.</p>
+<pre class="astro-code dark-plus" style="background-color:#1E1E1E;color:#D4D4D4;overflow-x:auto" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#DCDCAA">python</span><span style="color:#CE9178"> autograder.py</span><span style="color:#569CD6"> -q</span><span style="color:#CE9178"> q7</span></span></code></pre>
+<p>Deberían ver algo como lo siguiente si obtienen los puntos extra:</p>
+<pre class="astro-code dark-plus" style="background-color:#1E1E1E;color:#D4D4D4;overflow-x:auto" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#6A9955">### Question q7: 5/4 ###</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color:#DCDCAA">Finished</span><span style="color:#CE9178"> at</span><span style="color:#CE9178"> 15:20:09</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#DCDCAA">Provisional</span><span style="color:#CE9178"> grades</span></span>
+<span class="line"><span style="color:#CE9178">==================</span></span>
+<span class="line"><span style="color:#DCDCAA">Question</span><span style="color:#CE9178"> q4:</span><span style="color:#CE9178"> 3/3</span></span>
+<span class="line"><span style="color:#DCDCAA">Question</span><span style="color:#CE9178"> q7:</span><span style="color:#CE9178"> 5/4</span></span>
+<span class="line"><span style="color:#DCDCAA">------------------</span></span>
+<span class="line"><span style="color:#DCDCAA">Total:</span><span style="color:#CE9178"> 8/7</span></span></code></pre>
+<h2 id="parte-8-búsqueda-subóptima">Parte 8: Búsqueda subóptima</h2>
+<p>A veces, incluso con A* y una buena heurística, encontrar el camino óptimo a través de todos los puntos es difícil. En estos casos, aún nos gustaría encontrar un camino razonablemente bueno, rápidamente. En esta sección, escribirán un agente que siempre come ávidamente el punto más cercano. <code>ClosestDotSearchAgent</code> está implementado para ustedes en <code>searchAgents.py</code>, pero le falta una función clave que encuentra un camino al punto más cercano.</p>
+<p>Implementar la función <code>findPathToClosestDot</code> en <code>searchAgents.py</code>. Nuestro agente resuelve este laberinto (¡subóptimamente!) en menos de un segundo con un costo de camino de 350:</p>
+<pre class="astro-code dark-plus" style="background-color:#1E1E1E;color:#D4D4D4;overflow-x:auto" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#DCDCAA">python</span><span style="color:#CE9178"> pacman.py</span><span style="color:#569CD6"> -l</span><span style="color:#CE9178"> bigSearch</span><span style="color:#569CD6"> -p</span><span style="color:#CE9178"> ClosestDotSearchAgent</span><span style="color:#569CD6"> -z</span><span style="color:#CE9178"> .5</span></span></code></pre>
+<blockquote>
+<p>La manera más rápida de completar <code>findPathToClosestDot</code> es completar <code>AnyFoodSearchProblem</code>, que no tiene su prueba de objetivo. Luego, resuelvan ese problema con una función de búsqueda apropiada. ¡La solución debería ser muy corta!</p>
+</blockquote>
+<p>Su <code>ClosestDotSearchAgent</code> no siempre encontrará el camino más corto posible a través del laberinto. Asegúrense de entender por qué y traten de encontrar un pequeño ejemplo donde ir repetidamente al punto más cercano no resulte en encontrar el camino más corto para comer todos los puntos.</p>
+<p>Por favor, ejecuten el siguiente comando para ver si su implementación pasa todas las pruebas del autograder.</p>
+<pre class="astro-code dark-plus" style="background-color:#1E1E1E;color:#D4D4D4;overflow-x:auto" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#DCDCAA">python</span><span style="color:#CE9178"> autograder.py</span><span style="color:#569CD6"> -q</span><span style="color:#CE9178"> q8</span></span></code></pre>
+<p>Deberían ver algo como lo siguiente:</p>
+<pre class="astro-code dark-plus" style="background-color:#1E1E1E;color:#D4D4D4;overflow-x:auto" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#6A9955">### Question q8: 3/3 ###</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color:#DCDCAA">Finished</span><span style="color:#CE9178"> at</span><span style="color:#CE9178"> 15:22:23</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#DCDCAA">Provisional</span><span style="color:#CE9178"> grades</span></span>
+<span class="line"><span style="color:#CE9178">==================</span></span>
+<span class="line"><span style="color:#DCDCAA">Question</span><span style="color:#CE9178"> q8:</span><span style="color:#CE9178"> 3/3</span></span>
+<span class="line"><span style="color:#DCDCAA">------------------</span></span>
+<span class="line"><span style="color:#DCDCAA">Total:</span><span style="color:#CE9178"> 3/3</span></span></code></pre>
+<h2 id="calificación">Calificación</h2>
+<p>La calificación de este proyecto será de 0 a 100 puntos, donde 100 puntos es la calificación máxima que equivale a los 25 puntos obtenidos en el autograder. La calificación se basará en la cantidad de ejercicios completados. Si tienen alguna duda sobre la calificación, por favor envíen un mensaje por los canales correspondientes.</p>
+<p>Para conocer su calificación, por favor ejecuten el siguiente comando:</p>
+<pre class="astro-code dark-plus" style="background-color:#1E1E1E;color:#D4D4D4;overflow-x:auto" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#DCDCAA">python</span><span style="color:#CE9178"> autograder.py</span></span></code></pre>
+<p>Deberían ver algo como lo siguiente:</p>
+<pre class="astro-code dark-plus" style="background-color:#1E1E1E;color:#D4D4D4;overflow-x:auto" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#DCDCAA">Provisional</span><span style="color:#CE9178"> grades</span></span>
+<span class="line"><span style="color:#CE9178">==================</span></span>
+<span class="line"><span style="color:#DCDCAA">Question</span><span style="color:#CE9178"> q1:</span><span style="color:#CE9178"> 3/3</span></span>
+<span class="line"><span style="color:#DCDCAA">Question</span><span style="color:#CE9178"> q2:</span><span style="color:#CE9178"> 3/3</span></span>
+<span class="line"><span style="color:#DCDCAA">Question</span><span style="color:#CE9178"> q3:</span><span style="color:#CE9178"> 3/3</span></span>
+<span class="line"><span style="color:#DCDCAA">Question</span><span style="color:#CE9178"> q4:</span><span style="color:#CE9178"> 3/3</span></span>
+<span class="line"><span style="color:#DCDCAA">Question</span><span style="color:#CE9178"> q5:</span><span style="color:#CE9178"> 3/3</span></span>
+<span class="line"><span style="color:#DCDCAA">Question</span><span style="color:#CE9178"> q6:</span><span style="color:#CE9178"> 3/3</span></span>
+<span class="line"><span style="color:#DCDCAA">Question</span><span style="color:#CE9178"> q7:</span><span style="color:#CE9178"> 5/4</span></span>
+<span class="line"><span style="color:#DCDCAA">Question</span><span style="color:#CE9178"> q8:</span><span style="color:#CE9178"> 3/3</span></span>
+<span class="line"><span style="color:#DCDCAA">------------------</span></span>
+<span class="line"><span style="color:#DCDCAA">Total:</span><span style="color:#CE9178"> 26/25</span></span></code></pre>
+<h2 id="entrega">Entrega</h2>
+<p>Por favor subir el link de su repositorio al <strong>GES</strong>. Siempre es necesario que suban su repositorio al GES, incluso si no completaron todos los ejercicios, de lo contrario la nota será de 0 puntos automáticamente.</p>
+<p>Tienen más de una semana para completar el proyecto, es decir, el link para subir al GES estará habilitado hasta el <strong>28 de Febrero del 2025 a las 11:55 PM</strong>.</p> </div> </div> <div class="sticky top-24 max-h-[calc(100svh-16rem)] hidden w-80 shrink-0 py-8 2xl:block"> <div class="text-sm w-full h-full overflow-y-auto"> <h4 class="mb-4 font-medium">En esta página</h4> <ul class="space-y-2"> <li class="space-y-2"> <a href="#preparación" class="text-muted-foreground hover:text-foreground items-center flex transition-colors" style="margin-left: 0px;"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right mr-2 mt-1 h-3.5 w-3.5 shrink-0"><path d="m9 18 6-6-6-6"></path></svg> <span class="line-clamp-1">Preparación</span> </a> <ul class="ml-5 mt-2 space-y-2"> <li class="space-y-2"> <a href="#instalación-de-material" class="text-muted-foreground hover:text-foreground items-center flex transition-colors" style="margin-left: 0px;"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right mr-2 mt-1 h-3.5 w-3.5 shrink-0"><path d="m9 18 6-6-6-6"></path></svg> <span class="line-clamp-1">Instalación de material</span> </a>  </li> </ul> </li><li class="space-y-2"> <a href="#contenido-del-proyecto" class="text-muted-foreground hover:text-foreground items-center flex transition-colors" style="margin-left: 0px;"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right mr-2 mt-1 h-3.5 w-3.5 shrink-0"><path d="m9 18 6-6-6-6"></path></svg> <span class="line-clamp-1">Contenido del proyecto</span> </a> <ul class="ml-5 mt-2 space-y-2"> <li class="space-y-2"> <a href="#archivos-que-van-a-editar" class="text-muted-foreground hover:text-foreground items-center flex transition-colors" style="margin-left: 0px;"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right mr-2 mt-1 h-3.5 w-3.5 shrink-0"><path d="m9 18 6-6-6-6"></path></svg> <span class="line-clamp-1">Archivos que van a editar</span> </a>  </li><li class="space-y-2"> <a href="#archivos-que-quisas-necesiten-leer" class="text-muted-foreground hover:text-foreground items-center flex transition-colors" style="margin-left: 0px;"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right mr-2 mt-1 h-3.5 w-3.5 shrink-0"><path d="m9 18 6-6-6-6"></path></svg> <span class="line-clamp-1">Archivos que quisas necesiten leer</span> </a>  </li><li class="space-y-2"> <a href="#archivos-que-pueden-ignorar" class="text-muted-foreground hover:text-foreground items-center flex transition-colors" style="margin-left: 0px;"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right mr-2 mt-1 h-3.5 w-3.5 shrink-0"><path d="m9 18 6-6-6-6"></path></svg> <span class="line-clamp-1">Archivos que pueden ignorar</span> </a>  </li> </ul> </li><li class="space-y-2"> <a href="#bienvenido-a-pacman" class="text-muted-foreground hover:text-foreground items-center flex transition-colors" style="margin-left: 0px;"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right mr-2 mt-1 h-3.5 w-3.5 shrink-0"><path d="m9 18 6-6-6-6"></path></svg> <span class="line-clamp-1">Bienvenido a Pacman</span> </a>  </li><li class="space-y-2"> <a href="#anotaciones-de-python" class="text-muted-foreground hover:text-foreground items-center flex transition-colors" style="margin-left: 0px;"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right mr-2 mt-1 h-3.5 w-3.5 shrink-0"><path d="m9 18 6-6-6-6"></path></svg> <span class="line-clamp-1">Anotaciones de Python</span> </a>  </li><li class="space-y-2"> <a href="#parte-1-3pts-depth-first-search" class="text-muted-foreground hover:text-foreground items-center flex transition-colors" style="margin-left: 0px;"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right mr-2 mt-1 h-3.5 w-3.5 shrink-0"><path d="m9 18 6-6-6-6"></path></svg> <span class="line-clamp-1">Parte 1 (3pts): Depth First Search</span> </a>  </li><li class="space-y-2"> <a href="#parte-2-breadth-first-search" class="text-muted-foreground hover:text-foreground items-center flex transition-colors" style="margin-left: 0px;"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right mr-2 mt-1 h-3.5 w-3.5 shrink-0"><path d="m9 18 6-6-6-6"></path></svg> <span class="line-clamp-1">Parte 2: Breadth First Search</span> </a>  </li><li class="space-y-2"> <a href="#parte-3-uniform-cost-search" class="text-muted-foreground hover:text-foreground items-center flex transition-colors" style="margin-left: 0px;"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right mr-2 mt-1 h-3.5 w-3.5 shrink-0"><path d="m9 18 6-6-6-6"></path></svg> <span class="line-clamp-1">Parte 3: Uniform Cost Search</span> </a>  </li><li class="space-y-2"> <a href="#parte-4-a" class="text-muted-foreground hover:text-foreground items-center flex transition-colors" style="margin-left: 0px;"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right mr-2 mt-1 h-3.5 w-3.5 shrink-0"><path d="m9 18 6-6-6-6"></path></svg> <span class="line-clamp-1">Parte 4: A*</span> </a>  </li><li class="space-y-2"> <a href="#parte-5-encontrar-todas-las-esquinas" class="text-muted-foreground hover:text-foreground items-center flex transition-colors" style="margin-left: 0px;"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right mr-2 mt-1 h-3.5 w-3.5 shrink-0"><path d="m9 18 6-6-6-6"></path></svg> <span class="line-clamp-1">Parte 5: Encontrar todas las esquinas</span> </a>  </li><li class="space-y-2"> <a href="#parte-6-encontrar-todas-las-esquinas-con-heurística" class="text-muted-foreground hover:text-foreground items-center flex transition-colors" style="margin-left: 0px;"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right mr-2 mt-1 h-3.5 w-3.5 shrink-0"><path d="m9 18 6-6-6-6"></path></svg> <span class="line-clamp-1">Parte 6: Encontrar todas las esquinas con heurística</span> </a>  </li><li class="space-y-2"> <a href="#parte-7-comerse-todos-los-puntos-de-comida" class="text-muted-foreground hover:text-foreground items-center flex transition-colors" style="margin-left: 0px;"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right mr-2 mt-1 h-3.5 w-3.5 shrink-0"><path d="m9 18 6-6-6-6"></path></svg> <span class="line-clamp-1">Parte 7: Comerse todos los puntos de comida</span> </a>  </li><li class="space-y-2"> <a href="#parte-8-búsqueda-subóptima" class="text-muted-foreground hover:text-foreground items-center flex transition-colors" style="margin-left: 0px;"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right mr-2 mt-1 h-3.5 w-3.5 shrink-0"><path d="m9 18 6-6-6-6"></path></svg> <span class="line-clamp-1">Parte 8: Búsqueda subóptima</span> </a>  </li><li class="space-y-2"> <a href="#calificación" class="text-muted-foreground hover:text-foreground items-center flex transition-colors" style="margin-left: 0px;"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right mr-2 mt-1 h-3.5 w-3.5 shrink-0"><path d="m9 18 6-6-6-6"></path></svg> <span class="line-clamp-1">Calificación</span> </a>  </li><li class="space-y-2"> <a href="#entrega" class="text-muted-foreground hover:text-foreground items-center flex transition-colors" style="margin-left: 0px;"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right mr-2 mt-1 h-3.5 w-3.5 shrink-0"><path d="m9 18 6-6-6-6"></path></svg> <span class="line-clamp-1">Entrega</span> </a>  </li> </ul> </div> </div> </div> </div> </div> </main> <footer class="bg-background w-full border-t shrink-0"> <div class="mx-auto flex h-20 w-full max-w-screen-2xl items-center px-4 md:px-8 lg:px-16"> <div class="space-y-4"> <div class="text-muted-foreground space-y-2 text-sm"> <p>Licencia MIT</p> <p>
+Hecho con 💛 por  <a target="_blank" rel="noreferrer" href="https://github.com/andrescv" class="hover:text-primary transition-colors">
+@andrescv
+</a> </p> </div> </div> </div> </footer> </div> </body></html>
